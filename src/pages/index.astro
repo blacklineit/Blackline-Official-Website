@@ -1,0 +1,906 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<!-- Add Font Awesome for social icons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+		<style>
+			/* Page loader */
+			.page-loader {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: #000;
+				z-index: 9999;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: opacity 0.5s ease, visibility 0.5s ease;
+			}
+			
+			.page-loader.fade-out {
+				opacity: 0;
+				visibility: hidden;
+			}
+			
+			.loader-logo {
+				width: 150px;
+				height: auto;
+				animation: pulse 1.5s infinite;
+			}
+			
+			@keyframes pulse {
+				0% { opacity: 0.5; transform: scale(0.95); }
+				50% { opacity: 1; transform: scale(1); }
+				100% { opacity: 0.5; transform: scale(0.95); }
+			}
+			
+			/* Main hero section */
+			.hero {
+				height: 100vh;
+				min-height: 800px;
+				background-color: #000;
+				color: #fff;
+				position: relative;
+				overflow: hidden;
+				padding-top: 100px;
+			}
+			
+			.hero::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 100%);
+				z-index: 1;
+			}
+			
+			.hero-content {
+				position: relative;
+				z-index: 2;
+				max-width: 1000px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				height: calc(100vh - 180px);
+			}
+			
+			.hero-text {
+				max-width: 800px;
+			}
+			
+			.hero h1 {
+				font-size: 4rem;
+				font-weight: 800;
+				line-height: 1.1;
+				margin-bottom: 2rem;
+				opacity: 0;
+				animation: fadeInUp 1s ease forwards;
+				animation-delay: 0.5s;
+			}
+			
+			.hero p {
+				font-size: 1.1rem;
+				line-height: 1.6;
+				margin-bottom: 2rem;
+				color: rgba(255, 255, 255, 0.9);
+				max-width: 700px;
+				opacity: 0;
+				animation: fadeInUp 1s ease forwards;
+				animation-delay: 0.8s;
+			}
+			
+			.hero-buttons {
+				display: flex;
+				gap: 1rem;
+				margin-top: 1rem;
+				opacity: 0;
+				animation: fadeInUp 1s ease forwards;
+				animation-delay: 1s;
+			}
+			
+			@keyframes fadeInUp {
+				from {
+					opacity: 0;
+					transform: translateY(30px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			
+			/* Stats counter section */
+			.stats-counter {
+				background-color: var(--light-color);
+				padding: 5rem 0;
+				text-align: center;
+				position: relative;
+			}
+			
+			.stats-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+				gap: 3rem;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+			
+			.stat-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			
+			.stat-number {
+				font-size: 3.5rem;
+				font-weight: 800;
+				color: var(--primary-color);
+				margin-bottom: 0.5rem;
+				position: relative;
+				display: flex;
+				align-items: center;
+			}
+			
+			.stat-plus {
+				font-size: 2.5rem;
+				margin-left: 0.2rem;
+			}
+			
+			.stat-label {
+				font-size: 1.1rem;
+				color: var(--text-light);
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+			
+			/* Services section */
+			.services {
+				padding: 8rem 0;
+				background-color: #fff;
+			}
+			
+			.services-heading {
+				text-align: center;
+				max-width: 800px;
+				margin: 0 auto 5rem;
+				padding: 0 1.5rem;
+			}
+			
+			.services-heading h2 {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+				color: var(--text-color);
+				position: relative;
+				display: inline-block;
+			}
+			
+			.services-heading h2::after {
+				content: '';
+				position: absolute;
+				bottom: -15px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 80px;
+				height: 3px;
+				background-color: var(--primary-color);
+			}
+			
+			.services-heading p {
+				font-size: 1.1rem;
+				color: var(--text-light);
+			}
+			
+			.services-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+				gap: 2rem;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+			
+			.service-card {
+				background-color: var(--light-color);
+				border-radius: 8px;
+				padding: 2.5rem 2rem;
+				transition: var(--transition);
+				height: 100%;
+				box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+				display: flex;
+				flex-direction: column;
+			}
+			
+			.service-card:hover {
+				transform: translateY(-10px);
+				box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+			}
+			
+			.service-icon {
+				width: 70px;
+				height: 70px;
+				background-color: rgba(0, 102, 204, 0.1);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 1.5rem;
+			}
+			
+			.service-icon svg {
+				width: 32px;
+				height: 32px;
+				color: var(--primary-color);
+			}
+			
+			.service-card h3 {
+				font-size: 1.5rem;
+				margin-bottom: 1rem;
+				color: var(--text-color);
+			}
+			
+			.service-card p {
+				color: var(--text-light);
+				margin-bottom: 1.5rem;
+				flex-grow: 1;
+			}
+			
+			.service-link {
+				color: var(--primary-color);
+				font-weight: 600;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				transition: var(--transition);
+			}
+			
+			.service-link:hover {
+				gap: 0.8rem;
+				color: var(--secondary-color);
+			}
+			
+			/* Industries section */
+			.industries {
+				padding: 8rem 0;
+				background-color: var(--light-color);
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.industries-content {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+				position: relative;
+				z-index: 2;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+			}
+			
+			.industries h2 {
+				font-size: 3rem;
+				margin-bottom: 2rem;
+				color: var(--text-color);
+				position: relative;
+			}
+			
+			.industries h2 span {
+				display: block;
+				font-size: 1.5rem;
+				font-weight: 500;
+				color: var(--primary-color);
+				margin-bottom: 0.5rem;
+			}
+			
+			.counter-value {
+				font-size: 6rem;
+				font-weight: 800;
+				color: var(--primary-color);
+				margin: 2rem 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.counter-plus {
+				font-size: 3rem;
+				margin-left: 0.2rem;
+			}
+			
+			/* FAQ section */
+			.faq {
+				padding: 8rem 0;
+				background-color: #fff;
+			}
+			
+			.faq-heading {
+				text-align: center;
+				max-width: 800px;
+				margin: 0 auto 5rem;
+				padding: 0 1.5rem;
+			}
+			
+			.faq-heading h2 {
+				font-size: 2.5rem;
+				margin-bottom: 1rem;
+				color: var(--text-color);
+				position: relative;
+				display: inline-block;
+			}
+			
+			.faq-heading h2::after {
+				content: '';
+				position: absolute;
+				bottom: -15px;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 80px;
+				height: 3px;
+				background-color: var(--primary-color);
+			}
+			
+			.faq-grid {
+				max-width: 1000px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+			
+			.faq-item {
+				margin-bottom: 1.5rem;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+			}
+			
+			.faq-question {
+				background-color: var(--light-color);
+				padding: 1.5rem;
+				cursor: pointer;
+				font-weight: 600;
+				color: var(--text-color);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				transition: var(--transition);
+			}
+			
+			.faq-question:hover {
+				background-color: var(--primary-color);
+				color: white;
+			}
+			
+			.faq-number {
+				background-color: var(--primary-color);
+				color: white;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.9rem;
+				margin-right: 1rem;
+			}
+			
+			.faq-question.open {
+				background-color: var(--primary-color);
+				color: white;
+			}
+			
+			.faq-arrow {
+				transition: var(--transition);
+			}
+			
+			.faq-question.open .faq-arrow {
+				transform: rotate(180deg);
+			}
+			
+			.faq-answer {
+				background-color: white;
+				padding: 0;
+				max-height: 0;
+				overflow: hidden;
+				transition: all 0.3s ease;
+			}
+			
+			.faq-answer.show {
+				padding: 1.5rem;
+				max-height: 500px;
+			}
+			
+			.faq-answer p {
+				color: var(--text-light);
+				margin: 0;
+			}
+			
+			/* CTA section */
+			.cta {
+				padding: 8rem 0;
+				background-color: var(--primary-color);
+				color: white;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.cta::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: linear-gradient(45deg, rgba(0,73,153,0.8) 0%, rgba(0,102,204,0.5) 100%);
+			}
+			
+			.cta-content {
+				max-width: 1000px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+				text-align: center;
+				position: relative;
+				z-index: 2;
+			}
+			
+			.cta h2 {
+				font-size: 3.5rem;
+				margin-bottom: 2rem;
+				font-weight: 700;
+			}
+			
+			.cta-buttons {
+				display: flex;
+				justify-content: center;
+				gap: 1.5rem;
+			}
+			
+			/* Contact form section */
+			.contact {
+				padding: 8rem 0;
+				background-color: #fff;
+			}
+			
+			.contact-grid {
+				display: grid;
+				grid-template-columns: repeat(12, 1fr);
+				gap: 3rem;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 1.5rem;
+			}
+			
+			.contact-info {
+				grid-column: span 4;
+			}
+			
+			.contact-form {
+				grid-column: span 8;
+			}
+			
+			.contact-title {
+				font-size: 2.5rem;
+				margin-bottom: 2rem;
+			}
+			
+			.contact-options {
+				margin-top: 3rem;
+			}
+			
+			.contact-option {
+				margin-bottom: 2rem;
+			}
+			
+			.contact-option h3 {
+				font-size: 1.2rem;
+				margin-bottom: 0.5rem;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			
+			.contact-option h3 svg {
+				color: var(--primary-color);
+			}
+			
+			.form-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.5rem;
+				margin-bottom: 1.5rem;
+			}
+			
+			.form-group {
+				margin-bottom: 1.5rem;
+			}
+			
+			.form-label {
+				display: block;
+				margin-bottom: 0.5rem;
+				font-weight: 500;
+			}
+			
+			.form-control {
+				width: 100%;
+				padding: 0.8rem 1rem;
+				font-size: 1rem;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				transition: var(--transition);
+			}
+			
+			.form-control:focus {
+				border-color: var(--primary-color);
+				box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+				outline: none;
+			}
+			
+			textarea.form-control {
+				min-height: 150px;
+				resize: vertical;
+			}
+			
+			.submit-btn {
+				background-color: var(--primary-color);
+				color: white;
+				border: none;
+				padding: 1rem 2rem;
+				font-size: 1rem;
+				font-weight: 600;
+				border-radius: 4px;
+				cursor: pointer;
+				transition: var(--transition);
+			}
+			
+			.submit-btn:hover {
+				background-color: var(--secondary-color);
+				transform: translateY(-3px);
+			}
+			
+			/* Mobile styles */
+			@media (max-width: 992px) {
+				.hero h1 {
+					font-size: 3.2rem;
+				}
+				
+				.services-grid {
+					grid-template-columns: 1fr;
+				}
+				
+				.hero-buttons {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+				
+				.contact-grid {
+					grid-template-columns: 1fr;
+				}
+				
+				contact-info, .contact-form {
+					grid-column: span 12;
+				}
+				
+				.form-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+			
+			@media (max-width: 768px) {
+				.hero h1 {
+					font-size: 2.8rem;
+				}
+				
+				.services-heading h2, .faq-heading h2 {
+					font-size: 2rem;
+				}
+				
+				.stat-number {
+					font-size: 3rem;
+				}
+				
+				.industries h2 {
+					font-size: 2.5rem;
+				}
+				
+				.counter-value {
+					font-size: 5rem;
+				}
+				
+				.cta h2 {
+					font-size: 2.8rem;
+				}
+				
+				.cta-buttons {
+					flex-direction: column;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Page Loader -->
+		<div class="page-loader">
+			<img src="/favicon.svg" alt="BlackLine Logo" class="loader-logo">
+		</div>
+		
+		<Header />
+		
+		<main>
+			<!-- Hero Section -->
+			<section class="hero">
+				<div class="hero-content">
+					<div class="hero-text">
+						<h1>The IT Industry is broken.<br>We're here to fix it.</h1>
+						<p>
+							Many businesses face slow, inefficient systems, data silos, and frequent downtime. 
+							These bottlenecks not only frustrate teams but also hit your bottom line—lost opportunities, 
+							decreased customer satisfaction, and heightened security risks.
+						</p>
+						<p>
+							We offer solutions that eliminate these disruptions.
+						</p>
+						<p>
+							Each of our engineers can support up to 250 of your employees to ensure smooth operations. 
+							With a 99% response and resolution rate within SLA standards, we resolve issues in minutes, 
+							not hours, so you can stay focused on what matters.
+						</p>
+						<div class="hero-buttons">
+							<a href="/manifesto" class="btn btn-outline">Read Our Manifesto</a>
+							<a href="/contact" class="btn btn-primary">Schedule a Free Assessment</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Stats Counter Section -->
+			<section class="stats-counter">
+				<div class="stats-grid">
+					<div class="stat-item">
+						<div class="stat-number">20<span class="stat-plus">+</span></div>
+						<div class="stat-label">years of experience</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-number">150k<span class="stat-plus">+</span></div>
+						<div class="stat-label">endpoints managed</div>
+					</div>
+					<div class="stat-item">
+						<div class="stat-number">99<span class="stat-plus">%</span></div>
+						<div class="stat-label">resolution rate</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Services Section -->
+			<section class="services">
+				<div class="services-heading">
+					<h2>Comprehensive IT Services</h2>
+					<p>Proactive solutions that transform your technology into a powerful business asset</p>
+				</div>
+				
+				<div class="services-grid">
+					<div class="service-card">
+						<div class="service-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+						</div>
+						<h3>Comprehensive IT Services</h3>
+						<p>Proactive management that minimizes downtime, maximizes productivity, and transforms your technology into a powerful business asset.</p>
+						<a href="/services/it" class="service-link">Learn more →</a>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+						</div>
+						<h3>Flexible Cloud Solutions</h3>
+						<p>Tailored cloud, hybrid, or on-premises solutions that scale effortlessly, optimizing efficiency while keeping costs in check.</p>
+						<a href="/services/cloud" class="service-link">Learn more →</a>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+						</div>
+						<h3>Advanced Cybersecurity</h3>
+						<p>Industry-specific security strategies that safeguard sensitive data, ensure compliance, and maintain seamless business operations.</p>
+						<a href="/services/security" class="service-link">Learn more →</a>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+						</div>
+						<h3>Custom Software Solutions</h3>
+						<p>Applications designed to solve your unique challenges and streamline your business processes, providing you with competitive advantage.</p>
+						<a href="/services/software" class="service-link">Learn more →</a>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+						</div>
+						<h3>AI & Emerging Technologies</h3>
+						<p>Integrating cutting-edge AI and innovative technologies to provide actionable insights, automate workflows, and drive smarter decisions.</p>
+						<a href="/services/ai" class="service-link">Learn more →</a>
+					</div>
+					
+					<div class="service-card">
+						<div class="service-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+						</div>
+						<h3>Strategic Management</h3>
+						<p>Expert advisory services that ensure your tech investments align with your business goals and deliver measurable results.</p>
+						<a href="/services/management" class="service-link">Learn more →</a>
+					</div>
+				</div>
+			</section>
+			
+			<!-- Industries Section -->
+			<section class="industries">
+				<div class="industries-content">
+					<h2><span>Across</span> 10 sectors, we serve<br>organizations, every day</h2>
+					<div class="counter-value">100<span class="counter-plus">+</span></div>
+				</div>
+			</section>
+			
+			<!-- FAQ Section -->
+			<section class="faq">
+				<div class="faq-heading">
+					<h2>Frequently Asked Questions</h2>
+					<p>Get answers to common questions about our services and approach</p>
+				</div>
+				
+				<div class="faq-grid">
+					<div class="faq-item">
+						<div class="faq-question">
+							<div class="question-text">
+								<span class="faq-number">01</span>
+								What industries does Blackline specialize in?
+							</div>
+							<span class="faq-arrow">↓</span>
+						</div>
+						<div class="faq-answer">
+							<p>We serve clients across 10+ industries including healthcare, financial services, manufacturing, legal, education, and non-profit organizations, tailoring our solutions to meet industry-specific requirements and compliance standards.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							<div class="question-text">
+								<span class="faq-number">02</span>
+								Do you provide both cloud and on-premises solutions?
+							</div>
+							<span class="faq-arrow">↓</span>
+						</div>
+						<div class="faq-answer">
+							<p>Yes, we offer flexible solutions that can be deployed in the cloud, on-premises, or as hybrid environments based on your specific business needs, security requirements, and compliance considerations.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							<div class="question-text">
+								<span class="faq-number">03</span>
+								How does Blackline approach cybersecurity?
+							</div>
+							<span class="faq-arrow">↓</span>
+						</div>
+						<div class="faq-answer">
+							<p>We implement multi-layered security strategies with proactive monitoring, regular security assessments, employee training, and response planning to protect your systems and data from evolving threats.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							<div class="question-text">
+								<span class="faq-number">04</span>
+								What is your typical implementation timeframe?
+							</div>
+							<span class="faq-arrow">↓</span>
+						</div>
+						<div class="faq-answer">
+							<p>Our implementation timelines vary based on project complexity and scope, but we typically complete initial setup and transition within 30-45 days, ensuring minimal disruption to your business operations.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							<div class="question-text">
+								<span class="faq-number">05</span>
+								Can Blackline help with custom software development?
+							</div>
+							<span class="faq-arrow">↓</span>
+						</div>
+						<div class="faq-answer">
+							<p>Yes, our team includes experienced software developers who can create custom applications, integrations, and workflow solutions tailored to your specific business needs and industry requirements.</p>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<div class="faq-question">
+							<div class="question-text">
+								<span class="faq-number">06</span>
+								What kind of support can we expect after the initial implementation?
+							</div>
+							<span class="faq-arrow">↓</span>
+						</div>
+						<div class="faq-answer">
+							<p>We provide 24/7 monitoring and support with dedicated account managers, regular strategic reviews, and continuous optimization to ensure your technology environment operates at peak performance.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<!-- CTA Section -->
+			<section class="cta">
+				<div class="cta-content">
+					<h2>Start your new tech journey</h2>
+					<div class="cta-buttons">
+						<a href="/contact" class="btn btn-outline">Get in Touch</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		
+		<Footer />
+		
+		<script>
+			// Page loader
+			window.addEventListener('load', () => {
+				const loader = document.querySelector('.page-loader');
+				setTimeout(() => {
+					loader.classList.add('fade-out');
+				}, 500);
+			});
+			
+			// Scroll behavior for header
+			window.addEventListener('scroll', () => {
+				const header = document.querySelector('header');
+				if (window.scrollY > 100) {
+					header.classList.add('scrolled');
+				} else {
+					header.classList.remove('scrolled');
+				}
+			});
+			
+			// FAQ accordion
+			document.addEventListener('DOMContentLoaded', () => {
+				const faqQuestions = document.querySelectorAll('.faq-question');
+				
+				faqQuestions.forEach(question => {
+					question.addEventListener('click', () => {
+						const answer = question.nextElementSibling;
+						const isOpen = question.classList.contains('open');
+						
+						// Close all other answers
+						document.querySelectorAll('.faq-question').forEach(item => {
+							item.classList.remove('open');
+						});
+						
+						document.querySelectorAll('.faq-answer').forEach(item => {
+							item.classList.remove('show');
+						});
+						
+						// Toggle current answer
+						if (!isOpen) {
+							question.classList.add('open');
+							answer.classList.add('show');
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
