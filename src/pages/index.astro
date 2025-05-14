@@ -12,6 +12,7 @@ import Layout from '../layouts/Layout.astro';
 		<div class="logo">
 			<a href="/">
 				<img src="/images/blackline_logo_mark_black_rgb_540px.jpg" alt="Blackline" />
+				<span class="logo-text">Blackline</span>
 			</a>	
 		</div>
 		<nav class="main-nav">
@@ -465,6 +466,25 @@ import Layout from '../layouts/Layout.astro';
 		height: 40px;
 		width: auto;
 		filter: invert(1) brightness(100%); /* This will make the black logo appear white */
+	}
+	
+	.logo a {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+	
+	.logo-text {
+		color: var(--light-text);
+		font-size: 1.4rem;
+		font-weight: 600;
+		letter-spacing: 0.5px;
+	}
+	
+	@media (max-width: 576px) {
+		.logo-text {
+			font-size: 1.2rem;
+		}
 	}
 
 	/* Navigation Styles */
