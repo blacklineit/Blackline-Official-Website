@@ -47,9 +47,17 @@ import Layout from '../layouts/Layout.astro';
 	<!-- Hero Section with Background and Overlay -->
 	<section class="hero-section">
 		<div class="hero-background">
-			<!-- Background with overlay effect -->
+			<!-- Background with video overlay effect -->
 			<div class="animation-image-wrapper hero-animation">
-				<img src="/images/9-1.png" alt="Digital Transformation Visualization" class="animation-image particle-animation">
+				<div class="hero-video-container">
+					<iframe 
+						src="https://www.youtube.com/embed/fVPDf9UQE3k?autoplay=1&mute=1&loop=1&playlist=fVPDf9UQE3k&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&quality=hd1080"
+						title="Digital Transformation Visualization"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen>
+					</iframe>
+				</div>
 				<div class="particle-container" id="hero-particles"></div>
 			</div>
 			<div class="hero-overlay"></div>
@@ -1298,6 +1306,28 @@ import Layout from '../layouts/Layout.astro';
 		position: relative;
 	}
 
+	/* Hero Video Styles */
+	.hero-video-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	
+	.hero-video-container iframe {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100vw;
+		height: 56.25vw; /* 16:9 aspect ratio */
+		min-height: 100%;
+		min-width: 177.77vh; /* 16:9 aspect ratio */
+		transform: translate(-50%, -50%);
+		pointer-events: none; /* Prevents interaction with the video */
+	}
+	
 	/* Enhanced Particle Animation Styles */
 	.particle-container {
 		position: absolute;
@@ -1310,7 +1340,7 @@ import Layout from '../layouts/Layout.astro';
 	}
 	
 	#hero-particles {
-		z-index: 2; /* Above the image but below the overlay */
+		z-index: 2; /* Above the video but below the overlay */
 		mix-blend-mode: screen;
 		filter: blur(0px); /* No blur for sharper particles */
 	}
