@@ -1,0 +1,828 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Our Team | BlackLine IT">
+	<header class="main-header">
+		<div class="container">
+			<div class="logo">
+				<a href="/">
+					<img src="/logo-black.svg" alt="BlackLine IT Logo" />
+				</a>
+			</div>
+			<nav class="main-nav">
+				<button class="menu-toggle" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+					<span class="menu-icon-bar"></span>
+					<span class="menu-icon-bar"></span>
+					<span class="menu-icon-bar"></span>
+				</button>
+				<div class="nav-container" id="main-menu">
+					<ul class="nav-links">
+						<li class="has-dropdown">
+							<a href="#" class="nav-dropdown-toggle">Services</a>
+							<ul class="dropdown-menu">
+								<li><a href="/services/it-services">IT Services</a></li>
+								<li><a href="/services/cloud-infrastructure">Cloud & Infrastructure</a></li>
+								<li><a href="/services/cybersecurity">Cybersecurity</a></li>
+								<li><a href="/services/custom-software">Custom Software</a></li>
+								<li><a href="/services/ai-technologies">AI & Technologies</a></li>
+								<li><a href="/services/management-consulting">Management & Consulting</a></li>
+							</ul>
+						</li>
+						<li><a href="/about">About</a></li>
+						<li><a href="/manifesto">Manifesto</a></li>
+						<li><a href="/contact" class="nav-cta">Contact</a></li>
+						<li class="phone-item"><a href="tel:+16303881700" class="nav-phone">(630) 388-1700</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<!-- Hero Section with Background and Overlay -->
+		<section class="hero-section">
+			<div class="hero-background">
+				<div class="hero-overlay"></div>
+			</div>
+			<div class="container hero-content">
+				<h1>Meet Our Team</h1>
+				<p>The talented professionals behind BlackLine IT's success</p>
+			</div>
+		</section>
+
+		<!-- Team Introduction Section -->
+		<section class="team-intro-section">
+			<div class="container">
+				<div class="team-intro-content">
+					<h2>Our Greatest Asset: Our People</h2>
+					<p>At BlackLine IT, we believe that our team is what sets us apart. We've assembled a diverse group of technology experts, business strategists, and client success professionals who share one common goal: delivering exceptional value to our clients.</p>
+					<p>Each team member brings unique skills, perspectives, and experiences to the table, allowing us to approach challenges from multiple angles and deliver innovative solutions that truly address business needs.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Leadership Team Section -->
+		<section class="leadership-section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Leadership Team</h2>
+					<p>The visionaries guiding our company's direction and growth</p>
+				</div>
+
+				<div class="team-grid">
+					<!-- Leadership Team -->
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="John Franklin" />
+						</div>
+						<div class="team-info">
+							<h3>John Franklin</h3>
+							<p class="member-position">Chief Executive Officer</p>
+							<p class="member-bio">With over 20 years of experience in technology leadership, John founded BlackLine IT to create a different kind of IT company focused on business outcomes rather than technical metrics. Prior to founding BlackLine, John served as CTO for several mid-market enterprises where he witnessed firsthand the disconnect between IT service providers and business needs.</p>
+							<div class="member-social">
+								<a href="https://linkedin.com/" class="social-link" aria-label="LinkedIn">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+								</a>
+								<a href="mailto:john@blacklineit.com" class="social-link" aria-label="Email">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="Sarah Chen" />
+						</div>
+						<div class="team-info">
+							<h3>Sarah Chen</h3>
+							<p class="member-position">Chief Technology Officer</p>
+							<p class="member-bio">Sarah brings deep expertise in enterprise architecture and emerging technologies, with a focus on creating scalable, resilient systems that adapt to evolving business needs. With a background in both software development and IT operations, she champions BlackLine's integrated approach to technology solutions and leads our technical innovation initiatives.</p>
+							<div class="member-social">
+								<a href="https://linkedin.com/" class="social-link" aria-label="LinkedIn">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+								</a>
+								<a href="mailto:sarah@blacklineit.com" class="social-link" aria-label="Email">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Michael Reynolds" />
+						</div>
+						<div class="team-info">
+							<h3>Michael Reynolds</h3>
+							<p class="member-position">Chief Operations Officer</p>
+							<p class="member-bio">Michael oversees BlackLine's service delivery operations, ensuring consistent quality and continuous improvement across all client engagements and internal processes. With extensive experience in operational excellence and service management, he has developed BlackLine's distinctive approach to proactive IT management and preventative maintenance.</p>
+							<div class="member-social">
+								<a href="https://linkedin.com/" class="social-link" aria-label="LinkedIn">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+								</a>
+								<a href="mailto:michael@blacklineit.com" class="social-link" aria-label="Email">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Emma Wilson" />
+						</div>
+						<div class="team-info">
+							<h3>Emma Wilson</h3>
+							<p class="member-position">Director of Client Success</p>
+							<p class="member-bio">Emma leads our client success team, focusing on ensuring each client achieves their business objectives through strategic technology alignment and proactive support. Her background in both business consulting and IT management gives her unique insight into how technology can drive organizational performance and client satisfaction.</p>
+							<div class="member-social">
+								<a href="https://linkedin.com/" class="social-link" aria-label="LinkedIn">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+								</a>
+								<a href="mailto:emma@blacklineit.com" class="social-link" aria-label="Email">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Technical Team Section -->
+		<section class="technical-section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Technical Team</h2>
+					<p>Our specialized experts who design, implement, and support your technology solutions</p>
+				</div>
+
+				<div class="team-grid">
+					<!-- Technical Team Members -->
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="David Park" />
+						</div>
+						<div class="team-info">
+							<h3>David Park</h3>
+							<p class="member-position">Lead Cloud Architect</p>
+							<p class="member-bio">David specializes in designing and implementing secure, scalable cloud infrastructure solutions. With certifications in AWS, Azure, and Google Cloud, he helps clients navigate complex cloud migrations and optimize their cloud environments for both performance and cost.</p>
+						</div>
+					</div>
+
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1573497019418-b400bb3ab074?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Aisha Johnson" />
+						</div>
+						<div class="team-info">
+							<h3>Aisha Johnson</h3>
+							<p class="member-position">Cybersecurity Director</p>
+							<p class="member-bio">Aisha leads our cybersecurity practice, bringing expertise in threat detection, vulnerability management, and security compliance. With a background in ethical hacking and security architecture, she develops comprehensive security strategies that protect client assets while enabling business operations.</p>
+						</div>
+					</div>
+
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Thomas Rodriguez" />
+						</div>
+						<div class="team-info">
+							<h3>Thomas Rodriguez</h3>
+							<p class="member-position">Software Development Manager</p>
+							<p class="member-bio">Thomas oversees our custom software development initiatives, bringing extensive experience in application architecture, development methodologies, and quality assurance. He specializes in translating complex business requirements into elegant, maintainable software solutions.</p>
+						</div>
+					</div>
+
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=922&q=80" alt="Rachel Kim" />
+						</div>
+						<div class="team-info">
+							<h3>Rachel Kim</h3>
+							<p class="member-position">Network Infrastructure Specialist</p>
+							<p class="member-bio">Rachel designs and implements robust network solutions, from local area networks to wide area networks and SD-WAN deployments. Her expertise in network optimization ensures reliable connectivity and optimal performance for all client environments.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Client Success Team Section -->
+		<section class="client-success-section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Client Success Team</h2>
+					<p>Your dedicated partners in maximizing the value of your technology investment</p>
+				</div>
+
+				<div class="team-grid">
+					<!-- Client Success Team Members -->
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Ryan Martinez" />
+						</div>
+						<div class="team-info">
+							<h3>Ryan Martinez</h3>
+							<p class="member-position">Account Manager</p>
+							<p class="member-bio">Ryan serves as the primary point of contact for our enterprise clients, ensuring their strategic technology needs are understood and met. He coordinates resources across BlackLine teams to deliver consistent, high-quality service aligned with client business objectives.</p>
+						</div>
+					</div>
+
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1581992652564-44c42f5ad3ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Oscar Patel" />
+						</div>
+						<div class="team-info">
+							<h3>Oscar Patel</h3>
+							<p class="member-position">Technical Account Manager</p>
+							<p class="member-bio">Oscar bridges the gap between technical implementation and business needs, translating complex technical concepts into business terms and ensuring our solutions address specific client objectives. His combination of technical knowledge and business acumen makes him invaluable to client partnerships.</p>
+						</div>
+					</div>
+
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Dung Nguyen" />
+						</div>
+						<div class="team-info">
+							<h3>Dung Nguyen</h3>
+							<p class="member-position">Client Support Specialist</p>
+							<p class="member-bio">Dung provides responsive, friendly support for day-to-day client needs. Known for her exceptional problem-solving abilities and clear communication style, she ensures issues are quickly resolved and clients receive consistent, high-quality support experiences.</p>
+						</div>
+					</div>
+
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Jake Wilson" />
+						</div>
+						<div class="team-info">
+							<h3>Jake Wilson</h3>
+							<p class="member-position">Help Desk Manager</p>
+							<p class="member-bio">Jake leads our responsive help desk team, implementing refined support processes and ensuring quick resolution times. He maintains our knowledge management systems and develops training to continuously improve the client support experience.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Culture Section -->
+		<section class="culture-section">
+			<div class="container">
+				<div class="culture-grid">
+					<div class="culture-content">
+						<h2>Our Culture</h2>
+						<p>At BlackLine IT, our culture is founded on four key principles:</p>
+						
+						<div class="culture-values">
+							<div class="culture-value animate-on-scroll">
+								<h3>Continuous Learning</h3>
+								<p>We foster an environment where curiosity is encouraged and professional growth is expected. Our team members regularly pursue new certifications, explore emerging technologies, and share knowledge across the organization.</p>
+							</div>
+							
+							<div class="culture-value animate-on-scroll">
+								<h3>Client Partnership</h3>
+								<p>We view ourselves as an extension of our clients' teams—not just a service provider. This partnership mentality drives deeper understanding of business objectives and allows us to deliver more impactful solutions.</p>
+							</div>
+							
+							<div class="culture-value animate-on-scroll">
+								<h3>Proactive Excellence</h3>
+								<p>We believe in solving problems before they impact operations. This proactive mindset extends beyond our technical approach to how we communicate, plan, and engage with clients and each other.</p>
+							</div>
+							
+							<div class="culture-value animate-on-scroll">
+								<h3>Work-Life Balance</h3>
+								<p>We recognize that sustainable excellence requires balance. We promote flexible working arrangements, encourage time off, and create a supportive environment where team members can thrive professionally while maintaining fulfilling personal lives.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="culture-images">
+						<div class="culture-image-grid">
+							<img src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Team Collaboration" class="animate-on-scroll" />
+							<img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Office Environment" class="animate-on-scroll" />
+							<img src="https://images.unsplash.com/photo-1522071901873-411886a10004?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Team Meeting" class="animate-on-scroll" />
+							<img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="Team Building" class="animate-on-scroll" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Join Our Team Section -->
+		<section class="join-section">
+			<div class="container">
+				<div class="join-content">
+					<h2>Join Our Team</h2>
+					<p>We're always looking for talented individuals who share our values and passion for transforming how businesses experience technology. If you're interested in being part of our mission, we'd love to hear from you.</p>
+					<a href="/careers" class="btn btn-primary">View Open Positions</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="cta-section">
+			<div class="container">
+				<div class="cta-content">
+					<h2>Ready to work with our team?</h2>
+					<p>Schedule a call to discuss how BlackLine IT can support your business technology needs.</p>
+					<a href="/contact" class="btn btn-primary">Contact Us</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="main-footer">
+		<div class="container">
+			<div class="footer-grid">
+				<div class="footer-col">
+					<div class="footer-logo">
+						<img src="/logo-white.svg" alt="BlackLine IT Logo" />
+					</div>
+					<p>BlackLine IT is your trusted partner for comprehensive IT services, cybersecurity, cloud solutions, and custom software development.</p>
+					<div class="social-links">
+						<a href="https://facebook.com/blacklineit" aria-label="Facebook" class="social-icon">
+							<span class="social-facebook"></span>
+						</a>
+						<a href="https://twitter.com/blacklineit" aria-label="Twitter" class="social-icon">
+							<span class="social-twitter"></span>
+						</a>
+						<a href="https://linkedin.com/company/blacklineit" aria-label="LinkedIn" class="social-icon">
+							<span class="social-linkedin"></span>
+						</a>
+					</div>
+				</div>
+				
+				<div class="footer-col">
+					<h3>Services</h3>
+					<ul>
+						<li><a href="/services/it-services">IT Services</a></li>
+						<li><a href="/services/cloud-infrastructure">Cloud & Infrastructure</a></li>
+						<li><a href="/services/cybersecurity">Cybersecurity</a></li>
+						<li><a href="/services/custom-software">Custom Software</a></li>
+						<li><a href="/services/ai-technologies">AI & Technologies</a></li>
+						<li><a href="/services/management-consulting">Management & Consulting</a></li>
+					</ul>
+				</div>
+				
+				<div class="footer-col">
+					<h3>Company</h3>
+					<ul>
+						<li><a href="/about">About Us</a></li>
+						<li><a href="/manifesto">Our Manifesto</a></li>
+						<li><a href="/team" class="active">Our Team</a></li>
+						<li><a href="/careers">Careers</a></li>
+						<li><a href="/blog">Blog</a></li>
+					</ul>
+				</div>
+				
+				<div class="footer-col">
+					<h3>Contact</h3>
+					<address>
+						<p>123 Tech Boulevard<br>Suite 200<br>Chicago, IL 60007</p>
+						<p><a href="tel:+16303881700">(630) 388-1700</a></p>
+						<p><a href="mailto:info@blacklineit.com">info@blacklineit.com</a></p>
+					</address>
+				</div>
+			</div>
+			
+			<div class="footer-bottom">
+				<p>&copy; 2025 BlackLine IT. All Rights Reserved.</p>
+				<div class="footer-links">
+					<a href="/privacy">Privacy Policy</a>
+					<a href="/terms">Terms of Service</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	/* Hero Section */
+	.hero-section {
+		position: relative;
+		height: 60vh;
+		min-height: 400px;
+		display: flex;
+		align-items: center;
+		color: white;
+		overflow: hidden;
+	}
+	
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+		background-size: cover;
+		background-position: center;
+		z-index: -2;
+	}
+	
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.6);
+		z-index: -1;
+	}
+	
+	.hero-content {
+		max-width: 800px;
+		padding: 0 20px;
+	}
+	
+	.hero-content h1 {
+		font-size: 3.5rem;
+		margin-bottom: 1rem;
+		font-weight: 700;
+		animation: fadeInUp 1s ease-out;
+	}
+	
+	.hero-content p {
+		font-size: 1.5rem;
+		opacity: 0.9;
+		margin-bottom: 2rem;
+		animation: fadeInUp 1s ease-out 0.2s both;
+	}
+
+	/* Team Introduction Section */
+	.team-intro-section {
+		padding: 5rem 0;
+		background-color: #fff;
+		text-align: center;
+	}
+	
+	.team-intro-content {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+	
+	.team-intro-content h2 {
+		font-size: 2.5rem;
+		color: var(--primary-color);
+		margin-bottom: 2rem;
+	}
+	
+	.team-intro-content p {
+		font-size: 1.2rem;
+		line-height: 1.7;
+		color: #444;
+		margin-bottom: 1.5rem;
+	}
+
+	/* Sections Styling */
+	.leadership-section {
+		padding: 5rem 0;
+		background-color: #f9f9f9;
+	}
+	
+	.technical-section {
+		padding: 5rem 0;
+		background-color: #fff;
+	}
+	
+	.client-success-section {
+		padding: 5rem 0;
+		background-color: #f9f9f9;
+	}
+
+	/* Section Headers */
+	.section-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+	
+	.section-header h2 {
+		font-size: 2.5rem;
+		color: var(--primary-color);
+		margin-bottom: 1rem;
+	}
+	
+	.section-header p {
+		font-size: 1.2rem;
+		max-width: 700px;
+		margin: 0 auto;
+		color: #555;
+	}
+
+	/* Team Members Grid */
+	.team-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+	}
+	
+	.team-member {
+		display: flex;
+		gap: 2rem;
+		background: #fff;
+		padding: 2rem;
+		border-radius: 8px;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+	
+	.team-member:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	}
+	
+	.technical-section .team-member,
+	.client-success-section .team-member {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 2.5rem;
+	}
+	
+	.team-photo {
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+		overflow: hidden;
+		flex-shrink: 0;
+		border: 4px solid white;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	}
+	
+	.technical-section .team-photo,
+	.client-success-section .team-photo {
+		width: 180px;
+		height: 180px;
+		margin-bottom: 1.5rem;
+	}
+	
+	.team-photo img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+	}
+	
+	.team-info h3 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+		color: var(--primary-color);
+	}
+	
+	.member-position {
+		color: var(--secondary-color);
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
+	
+	.member-bio {
+		line-height: 1.6;
+		color: #444;
+		margin-bottom: 1.5rem;
+	}
+	
+	.technical-section .member-bio,
+	.client-success-section .member-bio {
+		margin-bottom: 0;
+	}
+	
+	.member-social {
+		display: flex;
+		gap: 1rem;
+	}
+	
+	.social-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		background-color: #f0f0f0;
+		border-radius: 50%;
+		transition: all 0.3s ease;
+		color: var(--primary-color);
+	}
+	
+	.social-link:hover {
+		background-color: var(--primary-color);
+		color: white;
+	}
+	
+	.social-link svg {
+		width: 18px;
+		height: 18px;
+	}
+
+	/* Culture Section */
+	.culture-section {
+		padding: 5rem 0;
+		background-color: #fff;
+	}
+	
+	.culture-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+	
+	.culture-content h2 {
+		font-size: 2.5rem;
+		color: var(--primary-color);
+		margin-bottom: 1.5rem;
+	}
+	
+	.culture-content > p {
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+		color: #444;
+	}
+	
+	.culture-values {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+	
+	.culture-value h3 {
+		font-size: 1.3rem;
+		color: var(--secondary-color);
+		margin-bottom: 0.5rem;
+	}
+	
+	.culture-value p {
+		line-height: 1.6;
+		color: #444;
+	}
+	
+	.culture-image-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
+	
+	.culture-image-grid img {
+		width: 100%;
+		height: auto;
+		border-radius: 8px;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+		transition: transform 0.3s ease;
+	}
+	
+	.culture-image-grid img:hover {
+		transform: scale(1.03);
+	}
+
+	/* Join Our Team Section */
+	.join-section {
+		padding: 5rem 0;
+		background-color: #f9f9f9;
+		text-align: center;
+	}
+	
+	.join-content {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+	
+	.join-content h2 {
+		font-size: 2.5rem;
+		color: var(--primary-color);
+		margin-bottom: 1.5rem;
+	}
+	
+	.join-content p {
+		font-size: 1.2rem;
+		line-height: 1.7;
+		margin-bottom: 2rem;
+		color: #444;
+	}
+
+	/* CTA Section */
+	.cta-section {
+		padding: 5rem 0;
+		background-color: var(--secondary-color);
+		color: white;
+		text-align: center;
+	}
+	
+	.cta-content {
+		max-width: 700px;
+		margin: 0 auto;
+	}
+	
+	.cta-content h2 {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+	}
+	
+	.cta-content p {
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
+
+	/* Button Styles */
+	.btn {
+		display: inline-block;
+		padding: 0.8rem 2rem;
+		font-weight: 600;
+		text-decoration: none;
+		border-radius: 4px;
+		transition: all 0.3s ease;
+		cursor: pointer;
+	}
+	
+	.btn-primary {
+		background-color: var(--primary-color);
+		color: white;
+		border: 2px solid var(--primary-color);
+	}
+	
+	.btn-primary:hover {
+		background-color: transparent;
+		color: white;
+	}
+
+	/* Responsive Styles */
+	@media (max-width: 1200px) {
+		.team-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+	
+	@media (max-width: 991px) {
+		.culture-grid {
+			grid-template-columns: 1fr;
+		}
+		
+		.culture-image-grid {
+			margin-top: 2rem;
+		}
+		
+		.team-member {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+		
+		.team-photo {
+			margin-bottom: 1.5rem;
+		}
+		
+		.team-info {
+			text-align: center;
+		}
+		
+		.member-social {
+			justify-content: center;
+		}
+		
+		.hero-content h1 {
+			font-size: 2.8rem;
+		}
+	}
+	
+	@media (max-width: 768px) {
+		.hero-content h1 {
+			font-size: 2.3rem;
+		}
+		
+		.hero-content p {
+			font-size: 1.2rem;
+		}
+		
+		.section-header h2,
+		.culture-content h2,
+		.join-content h2,
+		.cta-content h2,
+		.team-intro-content h2 {
+			font-size: 2rem;
+		}
+	}
+	
+	@media (max-width: 576px) {
+		.culture-image-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		// Mobile menu toggle
+		const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+		const mainMenu = document.getElementById('main-menu');
+		
+		if (mobileMenuToggle && mainMenu) {
+			mobileMenuToggle.addEventListener('click', () => {
+				mainMenu.classList.toggle('active');
+				mobileMenuToggle.setAttribute('aria-expanded', 
+					mobileMenuToggle.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+				);
+			});
+		}
+	});
+</script>

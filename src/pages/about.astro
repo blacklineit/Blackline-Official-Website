@@ -1,62 +1,870 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage="/blog-placeholder-about.jpg"
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<Layout title="About Us | BlackLine IT">
+	<header class="main-header">
+		<div class="container">
+			<div class="logo">
+				<a href="/">
+					<img src="/logo-black.svg" alt="BlackLine IT Logo" />
+				</a>
+			</div>
+			<nav class="main-nav">
+				<button class="menu-toggle" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+					<span class="menu-icon-bar"></span>
+					<span class="menu-icon-bar"></span>
+					<span class="menu-icon-bar"></span>
+				</button>
+				<div class="nav-container" id="main-menu">
+					<ul class="nav-links">
+						<li class="has-dropdown">
+							<a href="#" class="nav-dropdown-toggle">Services</a>
+							<ul class="dropdown-menu">
+								<li><a href="/services/it-services">IT Services</a></li>
+								<li><a href="/services/cloud-infrastructure">Cloud & Infrastructure</a></li>
+								<li><a href="/services/cybersecurity">Cybersecurity</a></li>
+								<li><a href="/services/custom-software">Custom Software</a></li>
+								<li><a href="/services/ai-technologies">AI & Technologies</a></li>
+								<li><a href="/services/management-consulting">Management & Consulting</a></li>
+							</ul>
+						</li>
+						<li><a href="/about" class="active">About</a></li>
+						<li><a href="/manifesto">Manifesto</a></li>
+						<li><a href="/contact" class="nav-cta">Contact</a></li>
+						<li class="phone-item"><a href="tel:+16303881700" class="nav-phone">(630) 388-1700</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+	<main>
+		<!-- Hero Section with Background and Overlay -->
+		<section class="hero-section">
+			<div class="hero-background">
+				<div class="hero-overlay"></div>
+			</div>
+			<div class="container hero-content">
+				<h1>About BlackLine IT</h1>
+				<p>Redefining how businesses experience technology since 2010.</p>
+			</div>
+		</section>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+		<!-- Company Overview Section -->
+		<section class="overview-section">
+			<div class="container">
+				<div class="overview-grid">
+					<div class="overview-content">
+						<div class="section-tag">Our Story</div>
+						<h2>Transforming IT Support into Business Enablement</h2>
+						<p>BlackLine IT was founded in 2010 with a clear mission: to break free from the outdated IT service model and create a new paradigm focused on business outcomes rather than billable hours.</p>
+						<p>Over the past decade, we've grown from a small team of passionate technologists to a comprehensive business technology partner serving over 200 organizations across 10 industry sectors. Our success stems from a simple philosophy - technology should enable your business, not burden it.</p>
+						<p>Today, we continue to challenge industry norms by delivering transparent, proactive solutions that align directly with our clients' business goals.</p>
+					</div>
+					<div class="overview-image">
+						<img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="BlackLine IT Team" class="rounded-image" />
+					</div>
+				</div>
+			</div>
+		</section>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+		<!-- Mission Section -->
+		<section class="mission-section">
+			<div class="container">
+				<div class="mission-grid">
+					<div class="mission-block">
+						<div class="mission-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+						</div>
+						<h3>Our Mission</h3>
+						<p>To create a world where technology enhances business operations rather than hindering them. We envision technology as a transparent enabler of business goals, not a constant source of problems and distractions.</p>
+					</div>
+					
+					<div class="mission-block">
+						<div class="mission-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+						</div>
+						<h3>Our Vision</h3>
+						<p>To become the industry standard for what true business-focused IT service should be. We aim to redefine expectations, showing that technology support can be both exceptional and aligned with business objectives.</p>
+					</div>
+					
+					<div class="mission-block">
+						<div class="mission-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path></svg>
+						</div>
+						<h3>Our Values</h3>
+						<p>We operate according to core principles: alignment with your business goals, prevention of IT issues before they impact operations, and simplification of complex technology ecosystems to deliver clear business value.</p>
+					</div>
+				</div>
+			</div>
+		</section>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
+		<!-- Approach Section -->
+		<section class="approach-section">
+			<div class="container">
+				<div class="section-header">
+					<h2>The BlackLine Approach</h2>
+					<p>How we've redefined IT service delivery</p>
+				</div>
+
+				<div class="approach-timeline">
+					<div class="timeline-item animate-on-scroll">
+						<div class="timeline-number">01</div>
+						<div class="timeline-content">
+							<h3>Business Alignment First</h3>
+							<p>We start by understanding your business goals, challenges, and strategic direction—not your hardware or software inventory. Technology decisions flow from business requirements, not the other way around.</p>
+						</div>
+					</div>
+
+					<div class="timeline-item animate-on-scroll">
+						<div class="timeline-number">02</div>
+						<div class="timeline-content">
+							<h3>Proactive Operations</h3>
+							<p>Our monitoring and maintenance systems are designed to detect and resolve issues before they impact your business. We invest in prevention rather than profiting from reactive support.</p>
+						</div>
+					</div>
+
+					<div class="timeline-item animate-on-scroll">
+						<div class="timeline-number">03</div>
+						<div class="timeline-content">
+							<h3>Strategic Planning</h3>
+							<p>We provide clear technology roadmaps aligned with your business growth plans, allowing for predictable budgeting and ensuring your IT infrastructure evolves with your business needs.</p>
+						</div>
+					</div>
+
+					<div class="timeline-item animate-on-scroll">
+						<div class="timeline-number">04</div>
+						<div class="timeline-content">
+							<h3>Transparent Partnership</h3>
+							<p>No hidden fees, technical jargon, or unnecessary complexity. We communicate clearly, set measurable objectives, and report regularly on how we're delivering against those objectives.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Team Section -->
+		<section class="team-section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Meet Our Leadership Team</h2>
+					<p>Seasoned professionals dedicated to transforming how businesses use technology</p>
+				</div>
+				
+				<div class="team-grid">
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="John Franklin" />
+						</div>
+						<h3>John Franklin</h3>
+						<p class="member-position">Chief Executive Officer</p>
+						<p class="member-bio">With over 20 years of experience in technology leadership, John founded BlackLine IT to create a different kind of IT company focused on business outcomes rather than technical metrics.</p>
+					</div>
+					
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="Sarah Chen" />
+						</div>
+						<h3>Sarah Chen</h3>
+						<p class="member-position">Chief Technology Officer</p>
+						<p class="member-bio">Sarah brings deep expertise in enterprise architecture and emerging technologies, with a focus on creating scalable, resilient systems that adapt to evolving business needs.</p>
+					</div>
+					
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Michael Reynolds" />
+						</div>
+						<h3>Michael Reynolds</h3>
+						<p class="member-position">Chief Operations Officer</p>
+						<p class="member-bio">Michael oversees BlackLine's service delivery operations, ensuring consistent quality and continuous improvement across all client engagements and internal processes.</p>
+					</div>
+					
+					<div class="team-member animate-on-scroll">
+						<div class="team-photo">
+							<img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Emma Wilson" />
+						</div>
+						<h3>Emma Wilson</h3>
+						<p class="member-position">Director of Client Success</p>
+						<p class="member-bio">Emma leads our client success team, focusing on ensuring each client achieves their business objectives through strategic technology alignment and proactive support.</p>
+					</div>
+				</div>
+				
+				<div class="team-cta">
+					<a href="/team" class="btn btn-outline">Meet Our Full Team</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Achievements Section -->
+		<section class="achievements-section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Our Achievements</h2>
+					<p>Milestones and recognition from our journey</p>
+				</div>
+				
+				<div class="achievements-grid">
+					<div class="achievement-card animate-on-scroll">
+						<div class="achievement-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+						</div>
+						<div class="achievement-content">
+							<h3>Industry Recognition</h3>
+							<p>Named "Top IT Service Provider" by Business Technology Review for three consecutive years (2022-2024)</p>
+						</div>
+					</div>
+					
+					<div class="achievement-card animate-on-scroll">
+						<div class="achievement-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+						</div>
+						<div class="achievement-content">
+							<h3>Client Satisfaction</h3>
+							<p>Maintained a 98% client retention rate over the past five years, with an average client satisfaction score of 4.9/5</p>
+						</div>
+					</div>
+					
+					<div class="achievement-card animate-on-scroll">
+						<div class="achievement-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+						</div>
+						<div class="achievement-content">
+							<h3>Growth & Expansion</h3>
+							<p>Expanded operations to 3 regional offices serving clients across the United States and Canada</p>
+						</div>
+					</div>
+					
+					<div class="achievement-card animate-on-scroll">
+						<div class="achievement-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+						</div>
+						<div class="achievement-content">
+							<h3>Innovation Leadership</h3>
+							<p>Developed proprietary AI-driven monitoring system that has reduced client downtime by an average of 73%</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Clients Section -->
+		<section class="clients-section">
+			<div class="container">
+				<div class="section-header">
+					<h2>Trusted by Industry Leaders</h2>
+					<p>A selection of organizations we're proud to partner with</p>
+				</div>
+				
+				<div class="client-logos">
+					<!-- Placeholder logos - would be replaced with actual client logos -->
+					<div class="client-logo animate-on-scroll">
+						<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect width="100" height="60" rx="4" fill="#f0f0f0"/>
+							<text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Client Logo</text>
+						</svg>
+					</div>
+					<div class="client-logo animate-on-scroll">
+						<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect width="100" height="60" rx="4" fill="#f0f0f0"/>
+							<text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Client Logo</text>
+						</svg>
+					</div>
+					<div class="client-logo animate-on-scroll">
+						<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect width="100" height="60" rx="4" fill="#f0f0f0"/>
+							<text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Client Logo</text>
+						</svg>
+					</div>
+					<div class="client-logo animate-on-scroll">
+						<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect width="100" height="60" rx="4" fill="#f0f0f0"/>
+							<text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Client Logo</text>
+						</svg>
+					</div>
+					<div class="client-logo animate-on-scroll">
+						<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect width="100" height="60" rx="4" fill="#f0f0f0"/>
+							<text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Client Logo</text>
+						</svg>
+					</div>
+					<div class="client-logo animate-on-scroll">
+						<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect width="100" height="60" rx="4" fill="#f0f0f0"/>
+							<text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Client Logo</text>
+						</svg>
+					</div>
+					<div class="client-logo animate-on-scroll">
+						<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect width="100" height="60" rx="4" fill="#f0f0f0"/>
+							<text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Client Logo</text>
+						</svg>
+					</div>
+					<div class="client-logo animate-on-scroll">
+						<svg width="100" height="60" viewBox="0 0 100 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect width="100" height="60" rx="4" fill="#f0f0f0"/>
+							<text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="12" fill="#555">Client Logo</text>
+						</svg>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="cta-section">
+			<div class="container">
+				<div class="cta-content">
+					<h2>Ready to Experience the BlackLine Difference?</h2>
+					<p>Schedule a free technology assessment and discover how our approach can transform your business operations.</p>
+					<a href="/contact" class="btn btn-primary">Get in Touch</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="main-footer">
+		<div class="container">
+			<div class="footer-grid">
+				<div class="footer-col">
+					<div class="footer-logo">
+						<img src="/logo-white.svg" alt="BlackLine IT Logo" />
+					</div>
+					<p>BlackLine IT is your trusted partner for comprehensive IT services, cybersecurity, cloud solutions, and custom software development.</p>
+					<div class="social-links">
+						<a href="https://facebook.com/blacklineit" aria-label="Facebook" class="social-icon">
+							<span class="social-facebook"></span>
+						</a>
+						<a href="https://twitter.com/blacklineit" aria-label="Twitter" class="social-icon">
+							<span class="social-twitter"></span>
+						</a>
+						<a href="https://linkedin.com/company/blacklineit" aria-label="LinkedIn" class="social-icon">
+							<span class="social-linkedin"></span>
+						</a>
+					</div>
+				</div>
+				
+				<div class="footer-col">
+					<h3>Services</h3>
+					<ul>
+						<li><a href="/services/it-services">IT Services</a></li>
+						<li><a href="/services/cloud-infrastructure">Cloud & Infrastructure</a></li>
+						<li><a href="/services/cybersecurity">Cybersecurity</a></li>
+						<li><a href="/services/custom-software">Custom Software</a></li>
+						<li><a href="/services/ai-technologies">AI & Technologies</a></li>
+						<li><a href="/services/management-consulting">Management & Consulting</a></li>
+					</ul>
+				</div>
+				
+				<div class="footer-col">
+					<h3>Company</h3>
+					<ul>
+						<li><a href="/about">About Us</a></li>
+						<li><a href="/manifesto">Our Manifesto</a></li>
+						<li><a href="/team">Our Team</a></li>
+						<li><a href="/careers">Careers</a></li>
+						<li><a href="/blog">Blog</a></li>
+					</ul>
+				</div>
+				
+				<div class="footer-col">
+					<h3>Contact</h3>
+					<address>
+						<p>123 Tech Boulevard<br>Suite 200<br>Chicago, IL 60007</p>
+						<p><a href="tel:+16303881700">(630) 388-1700</a></p>
+						<p><a href="mailto:info@blacklineit.com">info@blacklineit.com</a></p>
+					</address>
+				</div>
+			</div>
+			
+			<div class="footer-bottom">
+				<p>&copy; 2025 BlackLine IT. All Rights Reserved.</p>
+				<div class="footer-links">
+					<a href="/privacy">Privacy Policy</a>
+					<a href="/terms">Terms of Service</a>
+				</div>
+			</div>
+		</div>
+	</footer>
 </Layout>
+
+<style>
+	/* Hero Section */
+	.hero-section {
+		position: relative;
+		height: 70vh;
+		min-height: 500px;
+		display: flex;
+		align-items: center;
+		color: white;
+		overflow: hidden;
+	}
+	
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+		background-size: cover;
+		background-position: center;
+		z-index: -2;
+	}
+	
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.6);
+		z-index: -1;
+	}
+	
+	.hero-content {
+		max-width: 800px;
+		padding: 0 20px;
+	}
+	
+	.hero-content h1 {
+		font-size: 3.5rem;
+		margin-bottom: 1rem;
+		font-weight: 700;
+		animation: fadeInUp 1s ease-out;
+	}
+	
+	.hero-content p {
+		font-size: 1.5rem;
+		opacity: 0.9;
+		margin-bottom: 2rem;
+		animation: fadeInUp 1s ease-out 0.2s both;
+	}
+
+	/* Overview Section */
+	.overview-section {
+		padding: 5rem 0;
+		background-color: #fff;
+	}
+	
+	.overview-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3rem;
+		align-items: center;
+	}
+	
+	.section-tag {
+		display: inline-block;
+		padding: 0.4rem 1rem;
+		background-color: var(--secondary-color);
+		color: white;
+		border-radius: 20px;
+		font-size: 0.9rem;
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
+	
+	.overview-content h2 {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+		color: var(--primary-color);
+	}
+	
+	.overview-content p {
+		font-size: 1.1rem;
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+		color: #444;
+	}
+	
+	.overview-image img {
+		width: 100%;
+		height: auto;
+		border-radius: 8px;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	}
+
+	/* Mission Section */
+	.mission-section {
+		padding: 5rem 0;
+		background-color: #f9f9f9;
+	}
+	
+	.mission-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+	}
+	
+	.mission-block {
+		background: white;
+		padding: 2.5rem;
+		border-radius: 8px;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+		text-align: center;
+	}
+	
+	.mission-icon {
+		width: 60px;
+		height: 60px;
+		margin: 0 auto 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--primary-color);
+		color: white;
+		border-radius: 50%;
+		padding: 15px;
+	}
+	
+	.mission-icon svg {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.mission-block h3 {
+		font-size: 1.8rem;
+		margin-bottom: 1rem;
+		color: var(--primary-color);
+	}
+	
+	.mission-block p {
+		line-height: 1.6;
+		color: #555;
+	}
+
+	/* Approach Timeline Section */
+	.approach-section {
+		padding: 5rem 0;
+		background-color: #fff;
+	}
+	
+	.section-header {
+		text-align: center;
+		margin-bottom: 3rem;
+	}
+	
+	.section-header h2 {
+		font-size: 2.5rem;
+		color: var(--primary-color);
+		margin-bottom: 1rem;
+	}
+	
+	.section-header p {
+		font-size: 1.2rem;
+		max-width: 700px;
+		margin: 0 auto;
+		color: #555;
+	}
+	
+	.approach-timeline {
+		max-width: 900px;
+		margin: 0 auto;
+		position: relative;
+	}
+	
+	.approach-timeline::before {
+		content: '';
+		position: absolute;
+		left: 40px;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		background-color: #ddd;
+	}
+	
+	.timeline-item {
+		display: flex;
+		margin-bottom: 3rem;
+		position: relative;
+	}
+	
+	.timeline-number {
+		width: 80px;
+		height: 80px;
+		background-color: var(--secondary-color);
+		color: white;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.5rem;
+		font-weight: 700;
+		z-index: 1;
+		flex-shrink: 0;
+	}
+	
+	.timeline-content {
+		padding-left: 2rem;
+		padding-top: 0.5rem;
+	}
+	
+	.timeline-content h3 {
+		font-size: 1.8rem;
+		margin-bottom: 1rem;
+		color: var(--primary-color);
+	}
+	
+	.timeline-content p {
+		line-height: 1.6;
+		color: #444;
+	}
+
+	/* Team Section */
+	.team-section {
+		padding: 5rem 0;
+		background-color: #f9f9f9;
+	}
+	
+	.team-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2rem;
+		margin-bottom: 3rem;
+	}
+	
+	.team-member {
+		text-align: center;
+	}
+	
+	.team-photo {
+		width: 180px;
+		height: 180px;
+		border-radius: 50%;
+		overflow: hidden;
+		margin: 0 auto 1.5rem;
+		border: 4px solid white;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	}
+	
+	.team-photo img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center top;
+	}
+	
+	.team-member h3 {
+		font-size: 1.5rem;
+		margin-bottom: 0.5rem;
+		color: var(--primary-color);
+	}
+	
+	.member-position {
+		color: var(--secondary-color);
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
+	
+	.member-bio {
+		line-height: 1.6;
+		color: #444;
+	}
+	
+	.team-cta {
+		text-align: center;
+	}
+
+	/* Achievements Section */
+	.achievements-section {
+		padding: 5rem 0;
+		background-color: #fff;
+	}
+	
+	.achievements-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+	}
+	
+	.achievement-card {
+		display: flex;
+		align-items: center;
+		background: #f9f9f9;
+		padding: 2rem;
+		border-radius: 8px;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+	}
+	
+	.achievement-icon {
+		width: 50px;
+		height: 50px;
+		color: var(--secondary-color);
+		margin-right: 1.5rem;
+		flex-shrink: 0;
+	}
+	
+	.achievement-icon svg {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.achievement-content h3 {
+		font-size: 1.3rem;
+		margin-bottom: 0.5rem;
+		color: var(--primary-color);
+	}
+	
+	.achievement-content p {
+		line-height: 1.6;
+		color: #444;
+		margin: 0;
+	}
+
+	/* Client Logos Section */
+	.clients-section {
+		padding: 5rem 0;
+		background-color: #f9f9f9;
+	}
+	
+	.client-logos {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 2.5rem;
+	}
+	
+	.client-logo {
+		opacity: 0.7;
+		transition: opacity 0.3s;
+	}
+	
+	.client-logo:hover {
+		opacity: 1;
+	}
+
+	/* CTA Section */
+	.cta-section {
+		padding: 5rem 0;
+		background-color: var(--secondary-color);
+		color: white;
+		text-align: center;
+	}
+	
+	.cta-content {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+	
+	.cta-content h2 {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+	}
+	
+	.cta-content p {
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
+
+	/* Button Styles */
+	.btn {
+		display: inline-block;
+		padding: 0.8rem 2rem;
+		font-weight: 600;
+		text-decoration: none;
+		border-radius: 4px;
+		transition: all 0.3s ease;
+		cursor: pointer;
+	}
+	
+	.btn-primary {
+		background-color: var(--primary-color);
+		color: white;
+		border: 2px solid var(--primary-color);
+	}
+	
+	.btn-primary:hover {
+		background-color: transparent;
+		color: white;
+	}
+	
+	.btn-outline {
+		background-color: transparent;
+		color: var(--primary-color);
+		border: 2px solid var(--primary-color);
+	}
+	
+	.btn-outline:hover {
+		background-color: var(--primary-color);
+		color: white;
+	}
+
+	/* Responsive Styles */
+	@media (max-width: 991px) {
+		.overview-grid,
+		.mission-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		
+		.team-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		
+		.hero-content h1 {
+			font-size: 2.8rem;
+		}
+	}
+	
+	@media (max-width: 768px) {
+		.achievements-grid {
+			grid-template-columns: 1fr;
+		}
+		
+		.timeline-item {
+			flex-direction: column;
+		}
+		
+		.timeline-number {
+			margin-bottom: 1rem;
+		}
+		
+		.timeline-content {
+			padding-left: 0;
+			padding-top: 0;
+		}
+		
+		.approach-timeline::before {
+			display: none;
+		}
+		
+		.hero-content h1 {
+			font-size: 2.3rem;
+		}
+		
+		.hero-content p {
+			font-size: 1.2rem;
+		}
+		
+		.section-header h2,
+		.overview-content h2,
+		.cta-content h2 {
+			font-size: 2rem;
+		}
+	}
+
+	@media (max-width: 576px) {
+		.team-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		// Mobile menu toggle
+		const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+		const mainMenu = document.getElementById('main-menu');
+		
+		if (mobileMenuToggle && mainMenu) {
+			mobileMenuToggle.addEventListener('click', () => {
+				mainMenu.classList.toggle('active');
+				mobileMenuToggle.setAttribute('aria-expanded', 
+					mobileMenuToggle.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
+				);
+			});
+		}
+	});
+</script>
