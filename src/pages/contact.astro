@@ -1,0 +1,882 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact Us | BlackLine IT">
+	<header class="main-header">
+		<div class="container">
+			<div class="logo">
+				<a href="/">
+					<img src="/logo-black.svg" alt="BlackLine IT Logo" />
+				</a>
+			</div>
+			<nav class="main-nav">
+				<button class="menu-toggle" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+					<span class="menu-icon-bar"></span>
+					<span class="menu-icon-bar"></span>
+					<span class="menu-icon-bar"></span>
+				</button>
+				<div class="nav-container" id="main-menu">
+					<ul class="nav-links">
+						<li class="has-dropdown">
+							<a href="#" class="nav-dropdown-toggle">Services</a>
+							<ul class="dropdown-menu">
+								<li><a href="/services/it-services">IT Services</a></li>
+								<li><a href="/services/cloud-infrastructure">Cloud & Infrastructure</a></li>
+								<li><a href="/services/cybersecurity">Cybersecurity</a></li>
+								<li><a href="/services/custom-software">Custom Software</a></li>
+								<li><a href="/services/ai-technologies">AI & Technologies</a></li>
+								<li><a href="/services/management-consulting">Management & Consulting</a></li>
+							</ul>
+						</li>
+						<li><a href="/about">About</a></li>
+						<li><a href="/manifesto">Manifesto</a></li>
+						<li><a href="/contact" class="active nav-cta">Contact</a></li>
+						<li class="phone-item"><a href="tel:+16303881700" class="nav-phone">(630) 388-1700</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<!-- Hero Section with Background and Overlay -->
+		<section class="hero-section">
+			<div class="hero-background">
+				<div class="hero-overlay"></div>
+			</div>
+			<div class="container hero-content">
+				<h1>Contact BlackLine IT</h1>
+				<p>Reach out for a free consultation, assessment, or just to connect.</p>
+			</div>
+		</section>
+
+		<section class="contact-section">
+			<div class="container">
+				<div class="contact-grid">
+					<div class="contact-form-wrapper animate-on-scroll">
+						<div class="contact-form-container">
+							<h2>Get in Touch</h2>
+							<p class="form-intro">Fill out this form and one of our team members will get back to you within 24 hours.</p>
+							<form class="contact-form" method="POST" id="contact-form">
+								<div class="form-row">
+									<div class="form-field">
+										<label for="firstName">First Name <span class="required">(Required)</span></label>
+										<input type="text" id="firstName" name="firstName" required>
+									</div>
+									
+									<div class="form-field">
+										<label for="lastName">Last Name <span class="required">(Required)</span></label>
+										<input type="text" id="lastName" name="lastName" required>
+									</div>
+								</div>
+								
+								<div class="form-field">
+									<label for="email">Email <span class="required">(Required)</span></label>
+									<input type="email" id="email" name="email" required>
+								</div>
+								
+								<div class="form-field">
+									<label for="phone">Phone Number</label>
+									<input type="tel" id="phone" name="phone" placeholder="Optional">
+								</div>
+								
+								<div class="form-field">
+									<label for="company">Company</label>
+									<input type="text" id="company" name="company" placeholder="Optional">
+								</div>
+								
+								<div class="form-field">
+									<label for="inquiryType">How can we help you? <span class="required">(Required)</span></label>
+									<select id="inquiryType" name="inquiryType" required>
+										<option value="" disabled selected>Select an option</option>
+										<option value="it-services">IT Services</option>
+										<option value="cloud-infrastructure">Cloud & Infrastructure</option>
+										<option value="cybersecurity">Cybersecurity</option>
+										<option value="custom-software">Custom Software</option>
+										<option value="ai-technologies">AI & Technologies</option>
+										<option value="management-consulting">Management & Consulting</option>
+										<option value="free-assessment">Free Assessment</option>
+										<option value="other">Other</option>
+									</select>
+								</div>
+								
+								<div class="form-field">
+									<label for="message">Message <span class="required">(Required)</span></label>
+									<textarea id="message" name="message" rows="5" required></textarea>
+									<p class="form-help">Please let us know what's on your mind. Have a question for us? Ask away.</p>
+								</div>
+
+								<div class="form-field checkbox-field">
+									<input type="checkbox" id="newsletter" name="newsletter">
+									<label for="newsletter">Subscribe to our newsletter for industry insights and updates</label>
+								</div>
+								
+								<button type="submit" class="submit-button">Submit</button>
+							</form>
+						</div>
+					</div>
+
+					<div class="contact-info-wrapper">
+						<div class="contact-info animate-on-scroll">
+							<h2>Contact Information</h2>
+							<div class="info-grid">
+								<div class="info-block">
+									<h3>Schedule a Call</h3>
+									<a href="tel:+16303881700" class="contact-link">(630) 388-1700</a>
+									<p>Available Monday-Friday, 8am-5pm CT</p>
+								</div>
+								
+								<div class="info-block">
+									<h3>Email Us</h3>
+									<a href="mailto:info@blacklineit.com" class="contact-link">info@blacklineit.com</a>
+									<p>We respond to all emails within 24 hours</p>
+								</div>
+								
+								<div class="info-block">
+									<h3>Naperville Location</h3>
+									<address>
+										1751 W Diehl Rd Suite 185<br>
+										Naperville, IL 60563
+									</address>
+									<a href="https://g.co/kgs/kmi23bK" target="_blank" rel="noopener noreferrer" class="map-link">View on Map</a>
+								</div>
+								
+								<div class="info-block">
+									<h3>Chicago Location</h3>
+									<address>
+										171 N Aberdeen St Suite 400<br>
+										Chicago, IL 60607
+									</address>
+									<a href="https://g.co/kgs/d5JJwPK" target="_blank" rel="noopener noreferrer" class="map-link">View on Map</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="social-block animate-on-scroll">
+							<h3>Connect With Us</h3>
+							<div class="social-links">
+								<a href="https://www.facebook.com/blacklineit/" target="_blank" rel="noopener noreferrer" class="social-link">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+									<span>Facebook</span>
+								</a>
+								<a href="https://x.com/BlacklineIT" target="_blank" rel="noopener noreferrer" class="social-link">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+									<span>X / Twitter</span>
+								</a>
+								<a href="https://www.linkedin.com/company/blacklineit" target="_blank" rel="noopener noreferrer" class="social-link">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+									<span>LinkedIn</span>
+								</a>
+								<a href="https://www.instagram.com/blacklineit" target="_blank" rel="noopener noreferrer" class="social-link">
+									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+									<span>Instagram</span>
+								</a>
+							</div>
+						</div>
+
+						<div class="map-container animate-on-scroll">
+							<div class="map-responsive">
+								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2978.201417761625!2d-88.21281482412064!3d41.7019422711583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e529d5b669665%3A0x1939c84b8c3c8b87!2s1751%20W%20Diehl%20Rd%20%23185%2C%20Naperville%2C%20IL%2060563!5e0!3m2!1sen!2sus!4v1695506912155!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- FAQ Call to Action -->
+		<section class="faq-cta">
+			<div class="container">
+				<div class="faq-cta-content animate-on-scroll">
+					<h2>Still have questions?</h2>
+					<p>Check out our frequently asked questions for quick answers about our services and approach.</p>
+					<a href="/#faq" class="cta-button">View FAQ</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container">
+			<div class="footer-content">
+				<div class="footer-links">
+					<a href="/">HOME</a>
+					<a href="/manifesto">MANIFESTO</a>
+					<a href="/contact" class="active">CONTACT</a>
+					<a href="/privacy-policy">Privacy Policy</a>
+					<a href="/terms-and-conditions">Terms & Conditions</a>
+				</div>
+				<div class="footer-copyright">
+					<p>©Blackline 2025. All Rights Reserved</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+</Layout>
+
+<style>
+	/* Main Header Styles */
+	.main-header {
+		background-color: #ffffff;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
+		height: var(--header-height);
+	}
+
+	.main-header .container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+	}
+
+	.logo {
+		padding: 10px 0;
+	}
+
+	.logo img {
+		height: 40px;
+		width: auto;
+	}
+
+	/* Navigation Styles */
+	.main-nav {
+		position: relative;
+	}
+
+	.nav-links {
+		list-style: none;
+		display: flex;
+		align-items: center;
+	}
+
+	.nav-links > li {
+		position: relative;
+		margin-left: 1.5rem;
+	}
+
+	.nav-links a {
+		color: var(--text-color);
+		font-weight: 500;
+		font-size: 0.95rem;
+		padding: 0.5rem 0;
+		display: block;
+	}
+
+	.nav-links a:hover,
+	.nav-links a.active {
+		color: var(--secondary-color);
+	}
+
+	.nav-cta {
+		color: var(--secondary-color) !important;
+		font-weight: 600 !important;
+	}
+
+	.nav-phone {
+		background-color: var(--secondary-color);
+		color: white !important;
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		font-weight: 600;
+	}
+
+	.nav-phone:hover {
+		background-color: #e65c00;
+		color: white !important;
+	}
+
+	/* Dropdown Menu */
+	.has-dropdown {
+		position: relative;
+	}
+
+	.nav-dropdown-toggle::after {
+		content: "";
+		display: inline-block;
+		width: 0;
+		height: 0;
+		margin-left: 0.3em;
+		vertical-align: middle;
+		border-top: 0.3em solid;
+		border-right: 0.3em solid transparent;
+		border-left: 0.3em solid transparent;
+	}
+
+	.dropdown-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 220px;
+		background-color: #fff;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+		border-radius: 4px;
+		padding: 0.5rem 0;
+		list-style: none;
+		z-index: 1001;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(10px);
+		transition: all 0.3s ease;
+	}
+
+	.has-dropdown:hover .dropdown-menu,
+	.has-dropdown:focus-within .dropdown-menu {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	.dropdown-menu li a {
+		padding: 0.5rem 1.5rem;
+		font-size: 0.9rem;
+		white-space: nowrap;
+	}
+
+	.dropdown-menu li a:hover {
+		background-color: #f8f9fa;
+	}
+
+	/* Mobile Menu Button */
+	.menu-toggle {
+		display: none;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 10px;
+		z-index: 1002;
+	}
+
+	.menu-icon-bar {
+		display: block;
+		width: 25px;
+		height: 3px;
+		background-color: var(--text-color);
+		margin: 5px 0;
+		transition: all 0.3s ease;
+		border-radius: 3px;
+	}
+
+	/* Hero Section Styles */
+	.hero-section {
+		position: relative;
+		padding: 10rem 0 6rem;
+		background-color: var(--primary-color);
+		color: var(--light-text);
+		overflow: hidden;
+		min-height: 300px;
+		display: flex;
+		align-items: center;
+	}
+
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('https://blacklineit.com/wp-content/uploads/2023/04/contact-bg.jpg');
+		background-size: cover;
+		background-position: center;
+		z-index: 1;
+	}
+
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0,51,102,0.95) 0%, rgba(0,0,0,0.85) 100%);
+		z-index: 2;
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 3;
+		text-align: center;
+		max-width: 900px;
+	}
+
+	.hero-section h1 {
+		font-size: 3rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+		color: var(--light-text);
+	}
+
+	.hero-section p {
+		font-size: 1.3rem;
+		margin-bottom: 1.5rem;
+		opacity: 0.9;
+	}
+
+	/* Contact Section Styles */
+	.contact-section {
+		padding: 5rem 0;
+		background-color: #ffffff;
+	}
+
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 60px;
+		align-items: start;
+	}
+
+	/* Contact Form Styles */
+	.contact-form-container {
+		background-color: #ffffff;
+		border-radius: 10px;
+		padding: 2.5rem;
+		box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+		position: relative;
+		z-index: 2;
+	}
+
+	.contact-form-container h2 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+		color: var(--primary-color);
+	}
+
+	.form-intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+		color: #555;
+	}
+
+	.contact-form {
+		display: grid;
+		gap: 20px;
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+	}
+
+	.form-field {
+		position: relative;
+	}
+
+	.form-field label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-weight: 500;
+		color: var(--primary-color);
+	}
+
+	.required {
+		color: #777;
+		font-weight: normal;
+		font-size: 0.9em;
+	}
+
+	input, textarea, select {
+		width: 100%;
+		padding: 12px 15px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 1rem;
+		font-family: inherit;
+		transition: all 0.3s ease;
+		background-color: #f9fafc;
+	}
+
+	input:focus, textarea:focus, select:focus {
+		border-color: var(--primary-color);
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.1);
+		background-color: #fff;
+	}
+
+	input::placeholder, textarea::placeholder {
+		color: #aaa;
+	}
+
+	.form-help {
+		margin-top: 0.5rem;
+		font-size: 0.85rem;
+		color: #777;
+	}
+	
+	.checkbox-field {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+	
+	.checkbox-field input {
+		width: auto;
+		margin-right: 10px;
+	}
+	
+	.checkbox-field label {
+		display: inline;
+		margin-bottom: 0;
+	}
+
+	.submit-button {
+		background-color: var(--secondary-color);
+		color: white;
+		border: none;
+		padding: 1rem 2rem;
+		font-weight: 600;
+		font-size: 1.1rem;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		margin-top: 1rem;
+		width: auto;
+		justify-self: start;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.submit-button::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		background: rgba(255, 255, 255, 0.2);
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		transition: width 0.6s, height 0.6s;
+		z-index: -1;
+	}
+
+	.submit-button:hover {
+		background-color: #e65c00;
+		transform: translateY(-3px);
+		box-shadow: 0 5px 15px rgba(230, 92, 0, 0.2);
+	}
+
+	.submit-button:hover::after {
+		width: 300px;
+		height: 300px;
+	}
+
+	.submit-button:active {
+		transform: translateY(-1px);
+	}
+	
+	/* Form validation styling */
+	input:invalid, textarea:invalid, select:invalid {
+		border-color: #ff6b6b;
+	}
+	
+	input:invalid:focus, textarea:invalid:focus, select:invalid:focus {
+		box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+	}
+
+	/* Contact Info Styles */
+	.contact-info {
+		margin-bottom: 2rem;
+	}
+
+	.contact-info h2 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		color: var(--primary-color);
+	}
+
+	.info-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		gap: 30px;
+	}
+
+	.info-block {
+		margin-bottom: 1.5rem;
+	}
+
+	.info-block h3 {
+		font-size: 1.2rem;
+		margin-bottom: 0.8rem;
+		color: var(--primary-color);
+	}
+
+	.info-block p {
+		font-size: 0.9rem;
+		color: #555;
+	}
+
+	.contact-link {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: var(--secondary-color);
+		display: inline-block;
+		margin-bottom: 0.5rem;
+	}
+
+	address {
+		font-style: normal;
+		margin-bottom: 0.8rem;
+		line-height: 1.5;
+	}
+
+	.map-link {
+		display: inline-flex;
+		align-items: center;
+		font-size: 0.9rem;
+		color: var(--secondary-color);
+		font-weight: 500;
+	}
+
+	.map-link::after {
+		content: '';
+		display: inline-block;
+		width: 0.6rem;
+		height: 0.6rem;
+		border-top: 2px solid var(--secondary-color);
+		border-right: 2px solid var(--secondary-color);
+		transform: rotate(45deg);
+		margin-left: 0.4rem;
+	}
+
+	/* Social Links */
+	.social-block {
+		margin-bottom: 2rem;
+	}
+
+	.social-block h3 {
+		font-size: 1.5rem;
+		margin-bottom: 1.5rem;
+		color: var(--primary-color);
+	}
+
+	.social-links {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		gap: 20px;
+	}
+
+	.social-link {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 0.8rem 1rem;
+		background-color: #f9fafc;
+		border-radius: 6px;
+		transition: all 0.3s ease;
+	}
+
+	.social-link:hover {
+		background-color: var(--primary-color);
+		transform: translateY(-3px);
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	}
+
+	.social-link:hover span {
+		color: white;
+	}
+
+	.social-link:hover svg {
+		fill: white;
+	}
+
+	.social-link svg {
+		width: 20px;
+		height: 20px;
+		fill: var(--primary-color);
+		transition: all 0.3s ease;
+	}
+
+	.social-link span {
+		font-weight: 500;
+		color: var(--text-color);
+		transition: all 0.3s ease;
+	}
+
+	/* Map Container */
+	.map-container {
+		margin-top: 2rem;
+		border-radius: 10px;
+		overflow: hidden;
+		box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+	}
+
+	.map-responsive {
+		overflow: hidden;
+		padding-bottom: 56.25%;
+		position: relative;
+		height: 0;
+	}
+
+	.map-responsive iframe {
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		border: 0;
+	}
+
+	/* FAQ CTA */
+	.faq-cta {
+		background-color: #f9fafb;
+		padding: 4rem 0;
+	}
+
+	.faq-cta-content {
+		text-align: center;
+		max-width: 700px;
+		margin: 0 auto;
+	}
+
+	.faq-cta h2 {
+		font-size: 2rem;
+		margin-bottom: 1rem;
+		color: var(--primary-color);
+	}
+
+	.faq-cta p {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+		color: #555;
+	}
+
+	.cta-button {
+		display: inline-block;
+		background-color: var(--secondary-color);
+		color: white;
+		padding: 0.875rem 2rem;
+		border-radius: 4px;
+		font-weight: 600;
+		font-size: 1.1rem;
+		transition: all 0.3s ease;
+	}
+
+	.cta-button:hover {
+		background-color: #e65c00;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	}
+
+	/* Footer Styles */
+	.site-footer {
+		background-color: #212529;
+		color: rgba(255, 255, 255, 0.7);
+		padding: 3rem 0;
+	}
+
+	.footer-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.footer-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+		justify-content: center;
+		margin-bottom: 2rem;
+	}
+
+	.footer-links a {
+		color: rgba(255, 255, 255, 0.7);
+		transition: color 0.3s ease;
+		font-size: 0.9rem;
+	}
+
+	.footer-links a:hover,
+	.footer-links a.active {
+		color: white;
+	}
+
+	.footer-copyright {
+		font-size: 0.9rem;
+	}
+
+	/* Animation Classes */
+	.animate-on-scroll {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 0.6s ease, transform 0.6s ease;
+	}
+	
+	.animate-on-scroll.animated {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/* Responsive Styles */
+	@media (max-width: 991px) {
+		.contact-grid {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+
+		.form-row {
+			grid-template-columns: 1fr;
+		}
+
+		.contact-info-wrapper {
+			order: -1;
+		}
+	}
+
+	@media (max-width: 576px) {
+		.hero-section h1 {
+			font-size: 2rem;
+		}
+		
+		.hero-section p {
+			font-size: 1.1rem;
+		}
+		
+		.contact-form-container {
+			padding: 1.5rem;
+		}
+		
+		.social-links {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	// Form validation
+	document.addEventListener('DOMContentLoaded', function() {
+		const form = document.getElementById('contact-form');
+		if (form) {
+			form.addEventListener('submit', function(event) {
+				event.preventDefault();
+				
+				// Simple form validation
+				let isValid = true;
+				const requiredFields = form.querySelectorAll('[required]');
+				
+				requiredFields.forEach(field => {
+					if (!field.value.trim()) {
+						field.classList.add('error');
+						isValid = false;
+					} else {
+						field.classList.remove('error');
+					}
+				});
+				
+				if (isValid) {
+					// In a real implementation, you would submit the form data to your server
+					alert('Thank you for your message! We will get back to you shortly.');
+					form.reset();
+				} else {
+					alert('Please fill in all required fields.');
+				}
+			});
+		}
+	});
+</script>
+
+<script src="../components/site-scripts.js"></script>

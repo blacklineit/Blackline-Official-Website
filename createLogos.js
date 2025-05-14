@@ -1,0 +1,44 @@
+import fs from 'fs/promises';
+
+// Create logo SVG files
+async function createLogos() {  // Black logo (for use on light backgrounds)
+  const blackLogoSvg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="90" viewBox="0 0 540 90">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#000;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#222;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="540" height="90" fill="none"/>
+  <rect x="50" y="35" width="20" height="20" fill="#ff6600"/>
+  <text x="90" y="55" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="url(#grad1)" text-anchor="start" letter-spacing="-1">BLACK<tspan fill="#000000" font-weight="normal">LINE</tspan> IT</text>
+</svg>`;
+
+  // White logo (for use on dark backgrounds)
+  const whiteLogoSvg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="90" viewBox="0 0 540 90">
+  <defs>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#eee;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="540" height="90" fill="none"/>
+  <rect x="50" y="35" width="20" height="20" fill="#ff6600"/>
+  <text x="90" y="55" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="url(#grad2)" text-anchor="start" letter-spacing="-1">BLACK<tspan fill="#ffffff" font-weight="normal">LINE</tspan> IT</text>
+</svg>`;
+
+  // Create SVG files
+  try {
+    await fs.writeFile('./public/logo-black.svg', blackLogoSvg);
+    console.log('Black logo SVG created successfully');
+    
+    await fs.writeFile('./public/logo-white.svg', whiteLogoSvg);
+    console.log('White logo SVG created successfully');
+  } catch (err) {
+    console.error('Error creating logo files:', err);
+  }
+}
+
+createLogos();

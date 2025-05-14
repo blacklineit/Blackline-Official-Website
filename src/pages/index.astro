@@ -1,906 +1,1654 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<!-- Add Font Awesome for social icons -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-		<style>
-			/* Page loader */
-			.page-loader {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background-color: #000;
-				z-index: 9999;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				transition: opacity 0.5s ease, visibility 0.5s ease;
-			}
-			
-			.page-loader.fade-out {
-				opacity: 0;
-				visibility: hidden;
-			}
-			
-			.loader-logo {
-				width: 150px;
-				height: auto;
-				animation: pulse 1.5s infinite;
-			}
-			
-			@keyframes pulse {
-				0% { opacity: 0.5; transform: scale(0.95); }
-				50% { opacity: 1; transform: scale(1); }
-				100% { opacity: 0.5; transform: scale(0.95); }
-			}
-			
-			/* Main hero section */
-			.hero {
-				height: 100vh;
-				min-height: 800px;
-				background-color: #000;
-				color: #fff;
-				position: relative;
-				overflow: hidden;
-				padding-top: 100px;
-			}
-			
-			.hero::after {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.8) 100%);
-				z-index: 1;
-			}
-			
-			.hero-content {
-				position: relative;
-				z-index: 2;
-				max-width: 1000px;
-				margin: 0 auto;
-				padding: 0 1.5rem;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				height: calc(100vh - 180px);
-			}
-			
-			.hero-text {
-				max-width: 800px;
-			}
-			
-			.hero h1 {
-				font-size: 4rem;
-				font-weight: 800;
-				line-height: 1.1;
-				margin-bottom: 2rem;
-				opacity: 0;
-				animation: fadeInUp 1s ease forwards;
-				animation-delay: 0.5s;
-			}
-			
-			.hero p {
-				font-size: 1.1rem;
-				line-height: 1.6;
-				margin-bottom: 2rem;
-				color: rgba(255, 255, 255, 0.9);
-				max-width: 700px;
-				opacity: 0;
-				animation: fadeInUp 1s ease forwards;
-				animation-delay: 0.8s;
-			}
-			
-			.hero-buttons {
-				display: flex;
-				gap: 1rem;
-				margin-top: 1rem;
-				opacity: 0;
-				animation: fadeInUp 1s ease forwards;
-				animation-delay: 1s;
-			}
-			
-			@keyframes fadeInUp {
-				from {
-					opacity: 0;
-					transform: translateY(30px);
-				}
-				to {
-					opacity: 1;
-					transform: translateY(0);
-				}
-			}
-			
-			/* Stats counter section */
-			.stats-counter {
-				background-color: var(--light-color);
-				padding: 5rem 0;
-				text-align: center;
-				position: relative;
-			}
-			
-			.stats-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-				gap: 3rem;
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 0 1.5rem;
-			}
-			
-			.stat-item {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
-			
-			.stat-number {
-				font-size: 3.5rem;
-				font-weight: 800;
-				color: var(--primary-color);
-				margin-bottom: 0.5rem;
-				position: relative;
-				display: flex;
-				align-items: center;
-			}
-			
-			.stat-plus {
-				font-size: 2.5rem;
-				margin-left: 0.2rem;
-			}
-			
-			.stat-label {
-				font-size: 1.1rem;
-				color: var(--text-light);
-				text-transform: uppercase;
-				letter-spacing: 1px;
-			}
-			
-			/* Services section */
-			.services {
-				padding: 8rem 0;
-				background-color: #fff;
-			}
-			
-			.services-heading {
-				text-align: center;
-				max-width: 800px;
-				margin: 0 auto 5rem;
-				padding: 0 1.5rem;
-			}
-			
-			.services-heading h2 {
-				font-size: 2.5rem;
-				margin-bottom: 1rem;
-				color: var(--text-color);
-				position: relative;
-				display: inline-block;
-			}
-			
-			.services-heading h2::after {
-				content: '';
-				position: absolute;
-				bottom: -15px;
-				left: 50%;
-				transform: translateX(-50%);
-				width: 80px;
-				height: 3px;
-				background-color: var(--primary-color);
-			}
-			
-			.services-heading p {
-				font-size: 1.1rem;
-				color: var(--text-light);
-			}
-			
-			.services-grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-				gap: 2rem;
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 0 1.5rem;
-			}
-			
-			.service-card {
-				background-color: var(--light-color);
-				border-radius: 8px;
-				padding: 2.5rem 2rem;
-				transition: var(--transition);
-				height: 100%;
-				box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-				display: flex;
-				flex-direction: column;
-			}
-			
-			.service-card:hover {
-				transform: translateY(-10px);
-				box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-			}
-			
-			.service-icon {
-				width: 70px;
-				height: 70px;
-				background-color: rgba(0, 102, 204, 0.1);
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				margin-bottom: 1.5rem;
-			}
-			
-			.service-icon svg {
-				width: 32px;
-				height: 32px;
-				color: var(--primary-color);
-			}
-			
-			.service-card h3 {
-				font-size: 1.5rem;
-				margin-bottom: 1rem;
-				color: var(--text-color);
-			}
-			
-			.service-card p {
-				color: var(--text-light);
-				margin-bottom: 1.5rem;
-				flex-grow: 1;
-			}
-			
-			.service-link {
-				color: var(--primary-color);
-				font-weight: 600;
-				display: inline-flex;
-				align-items: center;
-				gap: 0.5rem;
-				transition: var(--transition);
-			}
-			
-			.service-link:hover {
-				gap: 0.8rem;
-				color: var(--secondary-color);
-			}
-			
-			/* Industries section */
-			.industries {
-				padding: 8rem 0;
-				background-color: var(--light-color);
-				position: relative;
-				overflow: hidden;
-			}
-			
-			.industries-content {
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 0 1.5rem;
-				position: relative;
-				z-index: 2;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				text-align: center;
-			}
-			
-			.industries h2 {
-				font-size: 3rem;
-				margin-bottom: 2rem;
-				color: var(--text-color);
-				position: relative;
-			}
-			
-			.industries h2 span {
-				display: block;
-				font-size: 1.5rem;
-				font-weight: 500;
-				color: var(--primary-color);
-				margin-bottom: 0.5rem;
-			}
-			
-			.counter-value {
-				font-size: 6rem;
-				font-weight: 800;
-				color: var(--primary-color);
-				margin: 2rem 0;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-			
-			.counter-plus {
-				font-size: 3rem;
-				margin-left: 0.2rem;
-			}
-			
-			/* FAQ section */
-			.faq {
-				padding: 8rem 0;
-				background-color: #fff;
-			}
-			
-			.faq-heading {
-				text-align: center;
-				max-width: 800px;
-				margin: 0 auto 5rem;
-				padding: 0 1.5rem;
-			}
-			
-			.faq-heading h2 {
-				font-size: 2.5rem;
-				margin-bottom: 1rem;
-				color: var(--text-color);
-				position: relative;
-				display: inline-block;
-			}
-			
-			.faq-heading h2::after {
-				content: '';
-				position: absolute;
-				bottom: -15px;
-				left: 50%;
-				transform: translateX(-50%);
-				width: 80px;
-				height: 3px;
-				background-color: var(--primary-color);
-			}
-			
-			.faq-grid {
-				max-width: 1000px;
-				margin: 0 auto;
-				padding: 0 1.5rem;
-			}
-			
-			.faq-item {
-				margin-bottom: 1.5rem;
-				border-radius: 8px;
-				overflow: hidden;
-				box-shadow: 0 8px 30px rgba(0,0,0,0.05);
-			}
-			
-			.faq-question {
-				background-color: var(--light-color);
-				padding: 1.5rem;
-				cursor: pointer;
-				font-weight: 600;
-				color: var(--text-color);
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				transition: var(--transition);
-			}
-			
-			.faq-question:hover {
-				background-color: var(--primary-color);
-				color: white;
-			}
-			
-			.faq-number {
-				background-color: var(--primary-color);
-				color: white;
-				width: 30px;
-				height: 30px;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 0.9rem;
-				margin-right: 1rem;
-			}
-			
-			.faq-question.open {
-				background-color: var(--primary-color);
-				color: white;
-			}
-			
-			.faq-arrow {
-				transition: var(--transition);
-			}
-			
-			.faq-question.open .faq-arrow {
-				transform: rotate(180deg);
-			}
-			
-			.faq-answer {
-				background-color: white;
-				padding: 0;
-				max-height: 0;
-				overflow: hidden;
-				transition: all 0.3s ease;
-			}
-			
-			.faq-answer.show {
-				padding: 1.5rem;
-				max-height: 500px;
-			}
-			
-			.faq-answer p {
-				color: var(--text-light);
-				margin: 0;
-			}
-			
-			/* CTA section */
-			.cta {
-				padding: 8rem 0;
-				background-color: var(--primary-color);
-				color: white;
-				position: relative;
-				overflow: hidden;
-			}
-			
-			.cta::after {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background: linear-gradient(45deg, rgba(0,73,153,0.8) 0%, rgba(0,102,204,0.5) 100%);
-			}
-			
-			.cta-content {
-				max-width: 1000px;
-				margin: 0 auto;
-				padding: 0 1.5rem;
-				text-align: center;
-				position: relative;
-				z-index: 2;
-			}
-			
-			.cta h2 {
-				font-size: 3.5rem;
-				margin-bottom: 2rem;
-				font-weight: 700;
-			}
-			
-			.cta-buttons {
-				display: flex;
-				justify-content: center;
-				gap: 1.5rem;
-			}
-			
-			/* Contact form section */
-			.contact {
-				padding: 8rem 0;
-				background-color: #fff;
-			}
-			
-			.contact-grid {
-				display: grid;
-				grid-template-columns: repeat(12, 1fr);
-				gap: 3rem;
-				max-width: 1200px;
-				margin: 0 auto;
-				padding: 0 1.5rem;
-			}
-			
-			.contact-info {
-				grid-column: span 4;
-			}
-			
-			.contact-form {
-				grid-column: span 8;
-			}
-			
-			.contact-title {
-				font-size: 2.5rem;
-				margin-bottom: 2rem;
-			}
-			
-			.contact-options {
-				margin-top: 3rem;
-			}
-			
-			.contact-option {
-				margin-bottom: 2rem;
-			}
-			
-			.contact-option h3 {
-				font-size: 1.2rem;
-				margin-bottom: 0.5rem;
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-			}
-			
-			.contact-option h3 svg {
-				color: var(--primary-color);
-			}
-			
-			.form-grid {
-				display: grid;
-				grid-template-columns: repeat(2, 1fr);
-				gap: 1.5rem;
-				margin-bottom: 1.5rem;
-			}
-			
-			.form-group {
-				margin-bottom: 1.5rem;
-			}
-			
-			.form-label {
-				display: block;
-				margin-bottom: 0.5rem;
-				font-weight: 500;
-			}
-			
-			.form-control {
-				width: 100%;
-				padding: 0.8rem 1rem;
-				font-size: 1rem;
-				border: 1px solid #ddd;
-				border-radius: 4px;
-				transition: var(--transition);
-			}
-			
-			.form-control:focus {
-				border-color: var(--primary-color);
-				box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
-				outline: none;
-			}
-			
-			textarea.form-control {
-				min-height: 150px;
-				resize: vertical;
-			}
-			
-			.submit-btn {
-				background-color: var(--primary-color);
-				color: white;
-				border: none;
-				padding: 1rem 2rem;
-				font-size: 1rem;
-				font-weight: 600;
-				border-radius: 4px;
-				cursor: pointer;
-				transition: var(--transition);
-			}
-			
-			.submit-btn:hover {
-				background-color: var(--secondary-color);
-				transform: translateY(-3px);
-			}
-			
-			/* Mobile styles */
-			@media (max-width: 992px) {
-				.hero h1 {
-					font-size: 3.2rem;
-				}
-				
-				.services-grid {
-					grid-template-columns: 1fr;
-				}
-				
-				.hero-buttons {
-					flex-direction: column;
-					align-items: flex-start;
-				}
-				
-				.contact-grid {
-					grid-template-columns: 1fr;
-				}
-				
-				contact-info, .contact-form {
-					grid-column: span 12;
-				}
-				
-				.form-grid {
-					grid-template-columns: 1fr;
-				}
-			}
-			
-			@media (max-width: 768px) {
-				.hero h1 {
-					font-size: 2.8rem;
-				}
-				
-				.services-heading h2, .faq-heading h2 {
-					font-size: 2rem;
-				}
-				
-				.stat-number {
-					font-size: 3rem;
-				}
-				
-				.industries h2 {
-					font-size: 2.5rem;
-				}
-				
-				.counter-value {
-					font-size: 5rem;
-				}
-				
-				.cta h2 {
-					font-size: 2.8rem;
-				}
-				
-				.cta-buttons {
-					flex-direction: column;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<!-- Page Loader -->
-		<div class="page-loader">
-			<img src="/favicon.svg" alt="BlackLine Logo" class="loader-logo">
+<Layout>
+	
+<header class="main-header">
+	<div class="container">
+		<div class="logo">
+			<a href="/">
+				<img src="/images/blackline_logo_mark_black_rgb_540px.jpg" alt="Blackline" />
+			</a>	
 		</div>
-		
-		<Header />
-		
-		<main>
-			<!-- Hero Section -->
-			<section class="hero">
-				<div class="hero-content">
-					<div class="hero-text">
-						<h1>The IT Industry is broken.<br>We're here to fix it.</h1>
-						<p>
-							Many businesses face slow, inefficient systems, data silos, and frequent downtime. 
-							These bottlenecks not only frustrate teams but also hit your bottom line—lost opportunities, 
-							decreased customer satisfaction, and heightened security risks.
-						</p>
-						<p>
-							We offer solutions that eliminate these disruptions.
-						</p>
-						<p>
-							Each of our engineers can support up to 250 of your employees to ensure smooth operations. 
-							With a 99% response and resolution rate within SLA standards, we resolve issues in minutes, 
-							not hours, so you can stay focused on what matters.
-						</p>
-						<div class="hero-buttons">
-							<a href="/manifesto" class="btn btn-outline">Read Our Manifesto</a>
-							<a href="/contact" class="btn btn-primary">Schedule a Free Assessment</a>
-						</div>
-					</div>
+		<nav class="main-nav">
+			<button class="menu-toggle" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-menu">
+				<span class="menu-icon-bar"></span>
+				<span class="menu-icon-bar"></span>
+				<span class="menu-icon-bar"></span>
+			</button>
+			<div class="nav-container" id="main-menu">
+				<ul class="nav-links">
+					<li class="has-dropdown">
+						<a href="#" class="nav-dropdown-toggle">Services</a>
+						<ul class="dropdown-menu">
+							<li><a href="/services/it-services">IT Services</a></li>
+							<li><a href="/services/cloud-infrastructure">Cloud & Infrastructure</a></li>
+							<li><a href="/services/cybersecurity">Cybersecurity</a></li>
+							<li><a href="/services/custom-software">Custom Software</a></li>
+							<li><a href="/services/ai-technologies">AI & Technologies</a></li>
+							<li><a href="/services/management-consulting">Management & Consulting</a></li>
+						</ul>
+					</li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/manifesto">Manifesto</a></li>
+					<li><a href="/contact" class="nav-cta">Contact</a></li>				
+				</ul>
+			</div>
+		</nav>
+	</div>
+</header>
+
+<main>
+	<!-- Hero Section with Background and Overlay -->
+	<section class="hero-section">
+		<div class="hero-background">
+			<!-- Background with overlay effect -->
+			<div class="animation-image-wrapper hero-animation">
+				<img src="/images/9-1.png" alt="Digital Transformation Visualization" class="animation-image particle-animation">
+				<div class="particle-container" id="hero-particles"></div>
+			</div>
+			<div class="hero-overlay"></div>
+		</div>
+		<div class="container hero-content">
+			<h1>Welcome to the Age of Intelligence.</h1>	
+			<p>We transform IT into your most valuable strategic asset. Is your technology ready?</p>
+			<!-- <a href="/contact" class="cta-button">Get Started</a>
+			<div class="hero-stats">
+				<div class="stat-item">
+					<span class="stat-number counter">25</span><span class="stat-suffix">+</span>
+					<p>years of experience</p>
 				</div>
-			</section>
-			
-			<!-- Stats Counter Section -->
-			<section class="stats-counter">
-				<div class="stats-grid">
-					<div class="stat-item">
-						<div class="stat-number">20<span class="stat-plus">+</span></div>
-						<div class="stat-label">years of experience</div>
-					</div>
-					<div class="stat-item">
-						<div class="stat-number">150k<span class="stat-plus">+</span></div>
-						<div class="stat-label">endpoints managed</div>
-					</div>
-					<div class="stat-item">
-						<div class="stat-number">99<span class="stat-plus">%</span></div>
-						<div class="stat-label">resolution rate</div>
-					</div>
+				<div class="stat-item">
+					<span class="stat-number counter">10</span><span class="stat-suffix">k+</span>
+					<p>endpoints managed</p>
 				</div>
-			</section>
-			
-			<!-- Services Section -->
-			<section class="services">
-				<div class="services-heading">
-					<h2>Comprehensive IT Services</h2>
-					<p>Proactive solutions that transform your technology into a powerful business asset</p>
-				</div>
-				
-				<div class="services-grid">
-					<div class="service-card">
-						<div class="service-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-						</div>
-						<h3>Comprehensive IT Services</h3>
-						<p>Proactive management that minimizes downtime, maximizes productivity, and transforms your technology into a powerful business asset.</p>
-						<a href="/services/it" class="service-link">Learn more →</a>
+			</div> -->
+		</div>
+	</section>
+
+	<section id="services-overview" class="services-section">
+		<div class="container">
+			<div class="service-grid">
+				<div class="service-item" id="comprehensive-it-services">
+					<div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
 					</div>
-					
-					<div class="service-card">
-						<div class="service-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-						</div>
-						<h3>Flexible Cloud Solutions</h3>
-						<p>Tailored cloud, hybrid, or on-premises solutions that scale effortlessly, optimizing efficiency while keeping costs in check.</p>
-						<a href="/services/cloud" class="service-link">Learn more →</a>
-					</div>
-					
-					<div class="service-card">
-						<div class="service-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-						</div>
-						<h3>Advanced Cybersecurity</h3>
-						<p>Industry-specific security strategies that safeguard sensitive data, ensure compliance, and maintain seamless business operations.</p>
-						<a href="/services/security" class="service-link">Learn more →</a>
-					</div>
-					
-					<div class="service-card">
-						<div class="service-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-						</div>
-						<h3>Custom Software Solutions</h3>
-						<p>Applications designed to solve your unique challenges and streamline your business processes, providing you with competitive advantage.</p>
-						<a href="/services/software" class="service-link">Learn more →</a>
-					</div>
-					
-					<div class="service-card">
-						<div class="service-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-						</div>
-						<h3>AI & Emerging Technologies</h3>
-						<p>Integrating cutting-edge AI and innovative technologies to provide actionable insights, automate workflows, and drive smarter decisions.</p>
-						<a href="/services/ai" class="service-link">Learn more →</a>
-					</div>
-					
-					<div class="service-card">
-						<div class="service-icon">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-						</div>
-						<h3>Strategic Management</h3>
-						<p>Expert advisory services that ensure your tech investments align with your business goals and deliver measurable results.</p>
-						<a href="/services/management" class="service-link">Learn more →</a>
-					</div>
-				</div>
-			</section>
-			
-			<!-- Industries Section -->
-			<section class="industries">
-				<div class="industries-content">
-					<h2><span>Across</span> 10 sectors, we serve<br>organizations, every day</h2>
-					<div class="counter-value">100<span class="counter-plus">+</span></div>
-				</div>
-			</section>
-			
-			<!-- FAQ Section -->
-			<section class="faq">
-				<div class="faq-heading">
-					<h2>Frequently Asked Questions</h2>
-					<p>Get answers to common questions about our services and approach</p>
+					<h3>Comprehensive IT Services</h3>
+					<p>Proactive management that minimizes downtime, maximizes productivity, and transforms your technology into a powerful business asset.</p>
+					<a href="/services/it-services" class="service-link">Learn More</a>
 				</div>
 				
-				<div class="faq-grid">
-					<div class="faq-item">
-						<div class="faq-question">
-							<div class="question-text">
-								<span class="faq-number">01</span>
-								What industries does Blackline specialize in?
-							</div>
-							<span class="faq-arrow">↓</span>
-						</div>
-						<div class="faq-answer">
-							<p>We serve clients across 10+ industries including healthcare, financial services, manufacturing, legal, education, and non-profit organizations, tailoring our solutions to meet industry-specific requirements and compliance standards.</p>
-						</div>
+				<div class="service-item" id="flexible-cloud-infrastructure">
+					<div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
 					</div>
-					
-					<div class="faq-item">
-						<div class="faq-question">
-							<div class="question-text">
-								<span class="faq-number">02</span>
-								Do you provide both cloud and on-premises solutions?
-							</div>
-							<span class="faq-arrow">↓</span>
-						</div>
-						<div class="faq-answer">
-							<p>Yes, we offer flexible solutions that can be deployed in the cloud, on-premises, or as hybrid environments based on your specific business needs, security requirements, and compliance considerations.</p>
-						</div>
-					</div>
-					
-					<div class="faq-item">
-						<div class="faq-question">
-							<div class="question-text">
-								<span class="faq-number">03</span>
-								How does Blackline approach cybersecurity?
-							</div>
-							<span class="faq-arrow">↓</span>
-						</div>
-						<div class="faq-answer">
-							<p>We implement multi-layered security strategies with proactive monitoring, regular security assessments, employee training, and response planning to protect your systems and data from evolving threats.</p>
-						</div>
-					</div>
-					
-					<div class="faq-item">
-						<div class="faq-question">
-							<div class="question-text">
-								<span class="faq-number">04</span>
-								What is your typical implementation timeframe?
-							</div>
-							<span class="faq-arrow">↓</span>
-						</div>
-						<div class="faq-answer">
-							<p>Our implementation timelines vary based on project complexity and scope, but we typically complete initial setup and transition within 30-45 days, ensuring minimal disruption to your business operations.</p>
-						</div>
-					</div>
-					
-					<div class="faq-item">
-						<div class="faq-question">
-							<div class="question-text">
-								<span class="faq-number">05</span>
-								Can Blackline help with custom software development?
-							</div>
-							<span class="faq-arrow">↓</span>
-						</div>
-						<div class="faq-answer">
-							<p>Yes, our team includes experienced software developers who can create custom applications, integrations, and workflow solutions tailored to your specific business needs and industry requirements.</p>
-						</div>
-					</div>
-					
-					<div class="faq-item">
-						<div class="faq-question">
-							<div class="question-text">
-								<span class="faq-number">06</span>
-								What kind of support can we expect after the initial implementation?
-							</div>
-							<span class="faq-arrow">↓</span>
-						</div>
-						<div class="faq-answer">
-							<p>We provide 24/7 monitoring and support with dedicated account managers, regular strategic reviews, and continuous optimization to ensure your technology environment operates at peak performance.</p>
-						</div>
-					</div>
+					<h3>Flexible Cloud & Infrastructure Solutions</h3>
+					<p>Tailored cloud, hybrid, or on-premises solutions that scale effortlessly, optimizing efficiency while keeping costs in check.</p>
+					<a href="/services/cloud-infrastructure" class="service-link">Learn More</a>
 				</div>
-			</section>
-			
-			<!-- CTA Section -->
-			<section class="cta">
-				<div class="cta-content">
-					<h2>Start your new tech journey</h2>
-					<div class="cta-buttons">
-						<a href="/contact" class="btn btn-outline">Get in Touch</a>
-					</div>
-				</div>
-			</section>
-		</main>
-		
-		<Footer />
-		
-		<script>
-			// Page loader
-			window.addEventListener('load', () => {
-				const loader = document.querySelector('.page-loader');
-				setTimeout(() => {
-					loader.classList.add('fade-out');
-				}, 500);
-			});
-			
-			// Scroll behavior for header
-			window.addEventListener('scroll', () => {
-				const header = document.querySelector('header');
-				if (window.scrollY > 100) {
-					header.classList.add('scrolled');
-				} else {
-					header.classList.remove('scrolled');
-				}
-			});
-			
-			// FAQ accordion
-			document.addEventListener('DOMContentLoaded', () => {
-				const faqQuestions = document.querySelectorAll('.faq-question');
 				
-				faqQuestions.forEach(question => {
-					question.addEventListener('click', () => {
-						const answer = question.nextElementSibling;
-						const isOpen = question.classList.contains('open');
-						
-						// Close all other answers
-						document.querySelectorAll('.faq-question').forEach(item => {
-							item.classList.remove('open');
-						});
-						
-						document.querySelectorAll('.faq-answer').forEach(item => {
-							item.classList.remove('show');
-						});
-						
-						// Toggle current answer
-						if (!isOpen) {
-							question.classList.add('open');
-							answer.classList.add('show');
-						}
-					});
-				});
-			});
-		</script>
-	</body>
-</html>
+				<div class="service-item" id="advanced-cybersecurity">
+					<div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+					</div>
+					<h3>Advanced Cybersecurity Solutions</h3>
+					<p>Industry-specific security strategies that safeguard sensitive data, ensure compliance with 2025 regulations, and maintain seamless business operations even under threat.</p>
+					<a href="/services/cybersecurity" class="service-link">Learn More</a>
+				</div>
+				
+				<div class="service-item" id="custom-software-solutions">
+					<div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+					</div>
+					<h3>Custom Software Solutions</h3>
+					<p>Applications designed to solve your unique challenges and streamline your business processes.</p>
+					<a href="/services/custom-software" class="service-link">Learn More</a>
+				</div>
+				
+				<div class="service-item" id="ai-emerging-technologies">
+					<div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+					</div>
+					<h3>AI & Emerging Technologies</h3>
+					<p>Leveraging May 2025's cutting-edge neural networks and adaptive algorithms to transform raw data into actionable business intelligence, creating true competitive advantage through technology.</p>
+					<a href="/services/ai-technologies" class="service-link">Learn More</a>
+				</div>
+				
+				<div class="service-item" id="strategic-management-consulting">
+					<div class="service-icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+					</div>
+					<h3>Strategic Management & Consulting</h3>
+					<p>Expert advisory services that ensure your tech investments align with your business goals and deliver measurable results.</p>
+					<a href="/services/management-consulting" class="service-link">Learn More</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Parallax CTA Section -->
+	<section class="parallax-section">
+		<div class="parallax-background">
+			<div class="parallax-overlay"></div>
+		</div>
+		<div class="container">
+			<div class="cta-grid">
+				<div class="manifesto-cta">
+					<h2>The IT Industry is broken.</h2>
+					<p>We're here to fix it and help you escape the technology industrial complex.</p>
+					<a href="/manifesto" class="cta-button">Read Our Manifesto</a>
+				</div>
+				
+				<div class="assessment-cta">
+					<h2>Schedule a Free Assessment.</h2>
+					<p>Get actionable insights on your IT strategy at no cost and no contracts, just free value.</p>
+					<a href="/contact" class="cta-button">Schedule</a>
+				</div>
+				
+				<div class="industry-fast-facts">
+					<h2>Across 10 sectors, we serve</h2>
+					<div class="industry-stat">
+						<span class="counter">200</span><span class="stat-suffix">+</span>
+					</div>
+					<p>organizations, every day</p>
+					<p class="industry-tagline">Your industry moves fast. We move faster.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="faq-section">
+		<div class="container">
+			<h2 class="section-title">Frequently Asked Questions</h2>
+			<div class="faq-grid">
+				<div class="faq-item">
+					<div class="faq-header" data-faq="faq1">
+						<h3><span class="faq-number">01</span> What industries does Blackline specialize in?</h3>
+						<span class="faq-icon"></span>
+					</div>
+					<div class="faq-content" id="faq1">
+						<p>We serve clients across healthcare, finance, manufacturing, professional services, legal, education, construction, non-profit, and technology sectors, with specialized teams for each industry's unique requirements.</p>
+					</div>
+				</div>
+				
+				<div class="faq-item">
+					<div class="faq-header" data-faq="faq2">
+						<h3><span class="faq-number">02</span> Do you provide both cloud and on-premises solutions?</h3>
+						<span class="faq-icon"></span>
+					</div>
+					<div class="faq-content" id="faq2">
+						<p>Yes, we offer fully customizable infrastructure solutions including pure cloud environments, hybrid architectures, and traditional on-premises systems based on your specific business needs and budget considerations.</p>
+					</div>
+				</div>
+				
+				<div class="faq-item">
+					<div class="faq-header" data-faq="faq3">
+						<h3><span class="faq-number">03</span> How does Blackline approach cybersecurity?</h3>
+						<span class="faq-icon"></span>
+					</div>
+					<div class="faq-content" id="faq3">
+						<p>We implement a layered security approach combining advanced threat protection, continuous monitoring, employee training, and compliance management to defend against evolving cyberthreats while maintaining operational efficiency.</p>
+					</div>
+				</div>
+				
+				<div class="faq-item">
+					<div class="faq-header" data-faq="faq4">
+						<h3><span class="faq-number">04</span> What is your typical implementation timeframe?</h3>
+						<span class="faq-icon"></span>
+					</div>
+					<div class="faq-content" id="faq4">
+						<p>Implementation timelines vary by project complexity, but our agile approach delivers initial results within 2-4 weeks, with complete migrations or system overhauls typically completed within 30-90 days.</p>
+					</div>
+				</div>
+				
+				<div class="faq-item">
+					<div class="faq-header" data-faq="faq5">
+						<h3><span class="faq-number">05</span> Can Blackline help with custom software development?</h3>
+						<span class="faq-icon"></span>
+					</div>
+					<div class="faq-content" id="faq5">
+						<p>Absolutely. Our in-house development team creates custom applications, integrations, automations, and business intelligence solutions tailored to your specific operational needs and challenges.</p>
+					</div>
+				</div>
+				
+				<div class="faq-item">
+					<div class="faq-header" data-faq="faq6">
+						<h3><span class="faq-number">06</span> What is the Apex Innovator Model (AIM)?</h3>
+						<span class="faq-icon"></span>
+					</div>
+					<div class="faq-content" id="faq6">
+						<p>The Apex Innovator Model is our 2025 proprietary framework that ensures every dollar spent on technology is directly mapped to specific business objectives. AIM provides operational alignment, radical transparency, and industry-specific design to transform your technology from a cost center into a strategic driver, delivering measurable outcomes and peace of mind.</p>
+					</div>
+				</div>
+				
+				<div class="faq-item">
+					<div class="faq-header" data-faq="faq7">
+						<h3><span class="faq-number">07</span> What kind of support can we expect after the initial implementation?</h3>
+						<span class="faq-icon"></span>
+					</div>
+					<div class="faq-content" id="faq7">
+						<p>We provide comprehensive ongoing support including 24/7 monitoring, proactive maintenance, regular security updates, quarterly strategy reviews, and dedicated technical support with industry-leading response times.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Animation Section with BlackLine IT Digital Transformation -->
+	<section class="animation-section">
+		<div class="container">
+			<div class="animation-wrapper">
+				<div class="animation-content">
+					<h2>AI-Powered Digital Transformation</h2>
+					<p>Our 2025 solutions leverage cutting-edge AI and custom algorithms to bring your business to the next level.</p>
+					<div class="animation-features">
+						<div class="feature-item">
+							<div class="feature-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+							</div>
+							<div class="feature-text">
+								<h4>AI-Enhanced Efficiency</h4>
+								<p>Transform operations with intelligent automation and predictive workflows</p>
+							</div>
+						</div>
+						<div class="feature-item">
+							<div class="feature-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+							</div>
+							<div class="feature-text">
+								<h4>Advanced Threat Protection</h4>
+								<p>Fortify your business with 2025's most sophisticated cybersecurity measures</p>
+							</div>
+						</div>
+						<div class="feature-item">
+							<div class="feature-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+							</div>
+							<div class="feature-text">
+								<h4>Apex Innovator Model (AIM)</h4>
+								<p>Our 2025 proprietary framework ensures every dollar of tech spend is mapped to specific business outcomes</p>
+							</div>
+						</div>
+					</div>
+					<a href="/services/ai-technologies" class="cta-button">Discover AI Solutions</a>
+				</div>
+				<div class="animation-visual">
+					<div class="animation-content-image">
+						<!-- Latest AI visualization from May 2025 -->
+						<img src="/images/ChatGPT-Image-May-5-2025-12_04_41-PM.png" alt="AI-Powered Technology Visualization" class="ai-visualization">
+						<!-- April 2025 supporting visualizations -->
+						<img src="/images/ChatGPT-Image-Apr-24-2025-04_25_14-PM.png" alt="Neural Network Architecture" class="ai-visualization-secondary">
+						<img src="/images/ChatGPT-Image-Apr-24-2025-04_25_10-PM.png" alt="AI Business Integration" class="ai-visualization-tertiary">
+						<div class="visual-elements"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact and Footer Sections -->
+	<section class="contact-section">
+		<div class="container">
+			<div class="contact-info">
+				<h2>Start your 2025 tech transformation journey.</h2>
+				<p>Get actionable insights on your IT strategy and measure your technology's true ROI with our no-cost, no-obligation assessment—just pure value delivery.</p>
+				<div class="contact-details-grid">
+					<div class="contact-block">
+						<h3>Call Us</h3>
+						<a href="tel:+16303881700" class="contact-link">(630) 388-1700</a>
+					</div>
+					
+					<div class="contact-block">
+						<h3>Social networks</h3>
+						<div class="social-links">
+							<a href="https://www.facebook.com/blacklineit/" target="_blank" rel="noopener noreferrer" class="social-link">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
+							</a>
+							<a href="https://x.com/BlacklineIT" target="_blank" rel="noopener noreferrer" class="social-link">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+							</a>
+							<a href="https://www.linkedin.com/company/blacklineit" target="_blank" rel="noopener noreferrer" class="social-link">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>
+							</a>
+							<a href="https://www.instagram.com/blacklineit" target="_blank" rel="noopener noreferrer" class="social-link">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+							</a>
+						</div>
+					</div>
+					
+					<div class="contact-block">
+						<h3>Our Locations</h3>
+						<a href="https://g.co/kgs/kmi23bK" target="_blank" rel="noopener noreferrer" class="address-link">1751 W Diehl Rd Suite 185<br>Naperville, IL</a>
+						<a href="https://g.co/kgs/d5JJwPK" target="_blank" rel="noopener noreferrer" class="address-link">171 N Aberdeen St Suite 400<br>Chicago, IL</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="contact-form-container">
+				<h2>Get in Touch</h2>
+				<form class="contact-form" method="POST">
+					<div class="form-field">
+						<label for="fullName">Full Name <span class="required">(Required)</span></label>
+						<input type="text" id="fullName" name="fullName" required>
+					</div>
+					
+					<div class="form-field">
+						<label for="email">Email <span class="required">(Required)</span></label>
+						<input type="email" id="email" name="email" required>
+					</div>
+					
+					<div class="form-field">
+						<label for="message">Message <span class="required">(Required)</span></label>
+						<textarea id="message" name="message" rows="5" required></textarea>
+						<p class="form-help">Please let us know what's on your mind. Have a question for us? Ask away.</p>
+					</div>
+					
+					<button type="submit" class="submit-button">Submit</button>
+				</form>
+			</div>
+		</div>
+	</section>
+</main>
+
+<footer class="site-footer">
+	<div class="container">
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="/">HOME</a>
+				<a href="/manifesto">MANIFESTO</a>
+				<a href="/contact">CONTACT</a>
+				<a href="/privacy-policy">Privacy Policy</a>
+				<a href="/terms-and-conditions">Terms & Conditions</a>
+			</div>
+			<div class="footer-copyright">
+				<p>©Blackline 2025. All Rights Reserved</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<style>
+	/* General Styles */
+	:root {
+		--primary-color: #000000; /* Black */
+		--secondary-color: #ff6600; /* Orange */
+		--accent-color: #333333; /* Dark Gray */
+		--text-color: #ffffff; /* White text for dark background */
+		--light-text: #ffffff;
+		--dark-bg: #000000; /* Black background */
+		--dark-gray: #111111; /* Very dark gray */
+		--medium-gray: #222222; /* Medium dark gray */
+		--border-color: #333333;
+		--header-height: 80px;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	body {
+		font-family: 'Inter', 'Roboto', 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+		color: var(--text-color);
+		line-height: 1.6;
+		background-color: var(--dark-bg);
+	}
+
+	.container {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 20px;
+	}
+
+	a {
+		text-decoration: none;
+		color: inherit;
+		transition: color 0.3s ease;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-weight: 600;
+		line-height: 1.3;
+		margin-bottom: 0.5em;
+		color: var(--light-text);
+	}
+
+	/* Utility Classes */
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
+	}
+
+	/* Main Header Styles */
+	.main-header {
+		background-color: var(--dark-bg);
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 1000;
+		height: var(--header-height);
+	}
+
+	.main-header .container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+	}
+
+	.logo {
+		padding: 10px 0;
+	}
+
+	.logo img {
+		height: 40px;
+		width: auto;
+		filter: invert(1) brightness(100%); /* This will make the black logo appear white */
+	}
+
+	/* Navigation Styles */
+	.main-nav {
+		position: relative;
+	}
+
+	.nav-links {
+		list-style: none;
+		display: flex;
+		align-items: center;
+	}
+
+	.nav-links > li {
+		position: relative;
+		margin-left: 1.5rem;
+	}
+
+	.nav-links a {
+		color: var(--light-text);
+		font-weight: 500;
+		font-size: 0.95rem;
+		padding: 0.5rem 0;
+		display: block;
+	}
+
+	.nav-links a:hover {
+		color: var(--secondary-color);
+	}
+
+	.nav-cta {
+		color: var(--secondary-color) !important;
+		font-weight: 600 !important;
+	}
+
+	.nav-phone {
+		background-color: var(--secondary-color);
+		color: white !important;
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		font-weight: 600;
+	}
+
+	.nav-phone:hover {
+		background-color: #e65c00;
+		color: white !important;
+	}
+
+	/* Dropdown Menu */
+	.has-dropdown {
+		position: relative;
+	}
+
+	.nav-dropdown-toggle::after {
+		content: "";
+		display: inline-block;
+		width: 0;
+		height: 0;
+		margin-left: 0.3em;
+		vertical-align: middle;
+		border-top: 0.3em solid;
+		border-right: 0.3em solid transparent;
+		border-left: 0.3em solid transparent;
+	}
+
+	.dropdown-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		min-width: 220px;
+		background-color: var(--medium-gray);
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+		border-radius: 4px;
+		padding: 0.5rem 0;
+		list-style: none;
+		z-index: 1001;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(10px);
+		transition: all 0.3s ease;
+	}
+
+	.has-dropdown:hover .dropdown-menu,
+	.has-dropdown:focus-within .dropdown-menu {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+	}
+
+	.dropdown-menu li a {
+		padding: 0.5rem 1.5rem;
+		font-size: 0.9rem;
+		white-space: nowrap;
+	}
+
+	.dropdown-menu li a:hover {
+		background-color: var(--accent-color);
+	}
+
+	/* Mobile Menu Button */
+	.menu-toggle {
+		display: none;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 10px;
+		z-index: 1002;
+	}
+
+	.menu-icon-bar {
+		display: block;
+		width: 25px;
+		height: 3px;
+		background-color: var(--light-text);
+		margin: 5px 0;
+		transition: all 0.3s ease;
+		border-radius: 3px;
+	}
+
+	/* Hero Section Styles */
+	.hero-section {
+		position: relative;
+		padding: 7rem 0 4rem; /* Adjusted for fixed header */
+		background-color: var(--dark-bg);
+		color: var(--light-text);
+		overflow: hidden;
+		min-height: 600px;
+		display: flex;
+		align-items: center;
+	}
+
+	.hero-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: var(--dark-bg);
+		z-index: 1;
+		overflow: hidden;
+	}
+	
+	.hero-animation {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 1;
+		overflow: hidden;
+	}
+	
+	.hero-animation .animation-image {
+		width: 110%; /* Slightly larger than container */
+		height: 110%;
+		object-fit: cover;
+		opacity: 0.6; /* Higher opacity for more visibility */
+		filter: brightness(1.1) saturate(1.2); /* Enhanced brightness and saturation */
+	}
+	
+	.hero-animation .particle-container {
+		mix-blend-mode: screen; /* Creates a light blend effect for particles */
+	}
+
+	.hero-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.7) 100%);
+		z-index: 3; /* Above particles */
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 3;
+		text-align: center;
+		max-width: 900px;
+	}
+
+	.hero-section h1 {
+		font-size: 2.5rem;
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+		color: var(--light-text);
+	}
+
+	.hero-section p {
+		font-size: 1.1rem;
+		margin-bottom: 1.5rem;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
+		opacity: 0.9;
+	}
+
+	.cta-button {
+		display: inline-block;
+		background-color: var(--secondary-color);
+		color: white;
+		padding: 0.875rem 2rem;
+		border-radius: 4px;
+		font-weight: 600;
+		font-size: 1.1rem;
+		transition: all 0.3s ease;
+		margin-top: 1rem;
+	}
+
+	.cta-button:hover {
+		background-color: #e65c00;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	}
+
+	.hero-stats {
+		display: flex;
+		justify-content: center;
+		gap: 4rem;
+		margin-top: 3rem;
+	}
+
+	.stat-item {
+		text-align: center;
+	}
+
+	.stat-number {
+		font-size: 3.5rem;
+		font-weight: 700;
+		color: var(--light-text);
+		line-height: 1;
+		display: inline-block;
+	}
+
+	.stat-suffix {
+		font-size: 2.5rem;
+		font-weight: 700;
+		color: var(--secondary-color);
+		display: inline-block;
+	}
+
+	.stat-item p {
+		font-size: 1.1rem;
+		margin-top: 0.5rem;
+		opacity: 0.8;
+	}
+
+	/* Services Section Styles */
+	.services-section {
+		padding: 5rem 0;
+		background-color: var(--dark-bg);
+	}
+
+	.service-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 30px;
+	}
+
+	.service-item {
+		background-color: var(--medium-gray);
+		border-radius: 8px;
+		padding: 2rem;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+		transition: all 0.3s ease;
+		position: relative;
+		overflow: hidden;
+		border: 1px solid var(--border-color);
+	}
+
+	.service-item:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	}
+
+	.service-icon {
+		width: 60px;
+		height: 60px;
+		background-color: rgba(255, 102, 0, 0.15);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 1.5rem;
+	}
+
+	.service-icon svg {
+		width: 30px;
+		height: 30px;
+		color: var(--secondary-color);
+	}
+
+	.service-item h3 {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: var(--light-text);
+	}
+
+	.service-item p {
+		color: #aaaaaa;
+		margin-bottom: 1.5rem;
+		line-height: 1.7;
+	}
+
+	.service-link {
+		display: inline-block;
+		color: var(--secondary-color);
+		font-weight: 600;
+		position: relative;
+		padding-bottom: 3px;
+	}
+
+	.service-link::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background-color: var(--secondary-color);
+		transition: width 0.3s ease;
+	}
+
+	.service-link:hover::after {
+		width: 100%;
+	}
+
+	/* Parallax Section Styles */
+	.parallax-section {
+		position: relative;
+		padding: 6rem 0;
+		overflow: hidden;
+	}
+
+	.parallax-background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image: url('https://blacklineit.com/wp-content/uploads/2023/04/cta-bg.jpg');
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+		z-index: 1;
+	}
+
+	.parallax-overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(0,51,102,0.9) 0%, rgba(0,0,0,0.85) 100%);
+		z-index: 2;
+	}
+
+	.cta-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 50px;
+		position: relative;
+		z-index: 3;
+		color: var(--light-text);
+	}
+
+	.manifesto-cta, .assessment-cta, .industry-fast-facts {
+		text-align: center;
+		padding: 2rem;
+		background-color: rgba(255, 255, 255, 0.05);
+		border-radius: 8px;
+		backdrop-filter: blur(10px);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		transition: all 0.3s ease;
+	}
+
+	.manifesto-cta:hover, .assessment-cta:hover, .industry-fast-facts:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+		background-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.parallax-section h2 {
+		font-size: 2rem;
+		font-weight: 700;
+		margin-bottom: 1.5rem;
+		color: var(--light-text);
+	}
+
+	.parallax-section p {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+		opacity: 0.9;
+	}
+
+	.industry-stat {
+		font-size: 4rem;
+		font-weight: 800;
+		line-height: 1;
+		margin: 1.5rem 0;
+	}
+
+	.industry-stat .counter {
+		color: var(--light-text);
+		display: inline-block;
+	}
+
+	.industry-stat .stat-suffix {
+		color: var(--secondary-color);
+		display: inline-block;
+	}
+
+	.industry-tagline {
+		font-size: 1.2rem;
+		font-weight: 600;
+		margin-top: 1rem;
+		color: var(--secondary-color);
+	}
+
+	/* FAQ Section Styles */
+	.faq-section {
+		padding: 5rem 0;
+		background-color: var(--dark-bg);
+		position: relative;
+		overflow: hidden;
+	}
+	
+	/* Animation Classes */
+	.animate-on-scroll {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 0.6s ease, transform 0.6s ease;
+	}
+	
+	.animate-on-scroll.animated {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.section-title {
+		font-size: 2.5rem;
+		text-align: center;
+		margin-bottom: 3rem;
+		color: var(--light-text);
+	}
+
+	.faq-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 30px;
+		margin: 0 auto;
+	}
+
+	.faq-item {
+		background-color: var(--medium-gray);
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+		border: 1px solid var(--border-color);
+	}
+
+	.faq-header {
+		padding: 1.5rem;
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 1px solid transparent;
+		transition: all 0.3s ease;
+	}
+
+	.faq-header h3 {
+		font-size: 1.1rem;
+		font-weight: 600;
+		margin: 0;
+		padding-right: 1.5rem;
+		color: var(--light-text);
+	}
+
+	.faq-number {
+		color: var(--secondary-color);
+		margin-right: 0.5rem;
+		font-weight: 700;
+	}
+
+	.faq-icon {
+		position: relative;
+		width: 20px;
+		height: 20px;
+		flex-shrink: 0;
+	}
+
+	.faq-icon::before, .faq-icon::after {
+		content: '';
+		position: absolute;
+		background-color: var(--secondary-color);
+		transition: all 0.3s ease;
+	}
+
+	.faq-icon::before {
+		top: 50%;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		transform: translateY(-50%);
+	}
+
+	.faq-icon::after {
+		top: 0;
+		left: 50%;
+		width: 2px;
+		height: 100%;
+		transform: translateX(-50%);
+	}
+
+	.faq-item.active .faq-icon::after {
+		transform: translateX(-50%) rotate(90deg);
+		opacity: 0;
+	}
+
+	.faq-content {
+		padding: 0;
+		max-height: 0;
+		overflow: hidden;
+		transition: all 0.3s ease;
+	}
+
+	.faq-item.active .faq-content {
+		padding: 1.5rem;
+		max-height: 500px;
+	}
+
+	.faq-item.active .faq-header {
+		border-bottom: 1px solid var(--border-color);
+		background-color: var(--accent-color);
+	}
+
+	/* Contact Section Styles */
+	.contact-section {
+		padding: 6rem 0;
+		background-color: var(--medium-gray);
+		position: relative;
+	}
+	
+	.contact-section .container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 60px;
+		align-items: start;
+	}
+
+	.contact-info {
+		max-width: 500px;
+	}
+
+	.contact-info h2 {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+		color: var(--light-text);
+	}
+
+	.contact-info p {
+		font-size: 1.1rem;
+		margin-bottom: 2.5rem;
+		line-height: 1.7;
+		color: #aaaaaa;
+	}
+
+	.contact-details-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 30px;
+	}
+
+	.contact-block {
+		margin-bottom: 1.5rem;
+	}
+
+	.contact-block h3 {
+		font-size: 1.2rem;
+		text-transform: uppercase;
+		margin-bottom: 1rem;
+		color: var(--secondary-color);
+		font-weight: 700;
+	}
+
+	.contact-link {
+		font-size: 1.2rem;
+		font-weight: 600;
+		color: var(--light-text);
+		display: inline-block;
+	}
+
+	.social-links {
+		display: flex;
+		gap: 15px;
+		margin-top: 0.5rem;
+	}
+
+	.social-link {
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: var(--accent-color);
+		border-radius: 50%;
+		transition: all 0.3s ease;
+	}
+
+	.social-link svg {
+		width: 20px;
+		height: 20px;
+		fill: white;
+	}
+
+	.social-link:hover {
+		background-color: var(--secondary-color);
+		transform: translateY(-3px);
+	}
+
+	.address-link {
+		display: block;
+		margin-bottom: 1rem;
+		color: var(--text-color);
+		line-height: 1.5;
+		transition: color 0.3s ease;
+	}
+
+	.address-link:hover {
+		color: var(--secondary-color);
+	}
+
+	/* Contact Form Styles */
+	.contact-form-container {
+		background-color: var(--accent-color);
+		border-radius: 10px;
+		padding: 2.5rem;
+		box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+		position: relative;
+		z-index: 2;
+		border: 1px solid var(--border-color);
+	}
+
+	.contact-form-container h2 {
+		font-size: 2rem;
+		margin-bottom: 1.5rem;
+		color: var(--light-text);
+	}
+
+	.contact-form {
+		display: grid;
+		gap: 25px;
+	}
+
+	.form-field {
+		position: relative;
+	}
+
+	.form-field label {
+		display: block;
+		margin-bottom: 0.5rem;
+		font-weight: 500;
+		color: var(--light-text);
+	}
+
+	.required {
+		color: #999;
+		font-weight: normal;
+		font-size: 0.9em;
+	}
+
+	input, textarea {
+		width: 100%;
+		padding: 12px 15px;
+		border: 1px solid var(--border-color);
+		border-radius: 4px;
+		font-size: 1rem;
+		font-family: inherit;
+		transition: all 0.3s ease;
+		background-color: var(--dark-gray);
+		color: var(--light-text);
+	}
+
+	input:focus, textarea:focus {
+		border-color: var(--secondary-color);
+		outline: none;
+		box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.2);
+		background-color: var(--medium-gray);
+	}
+
+	input::placeholder, textarea::placeholder {
+		color: #aaa;
+	}
+
+	.form-help {
+		margin-top: 0.5rem;
+		font-size: 0.85rem;
+		color: #999;
+	}
+
+	.submit-button {
+		background-color: var(--secondary-color);
+		color: white;
+		border: none;
+		padding: 1rem 2rem;
+		font-weight: 600;
+		font-size: 1.1rem;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		margin-top: 1rem;
+		width: auto;
+		justify-self: start;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.submit-button::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		background: rgba(255, 255, 255, 0.2);
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		transition: width 0.6s, height 0.6s;
+		z-index: -1;
+	}
+
+	.submit-button:hover {
+		background-color: #e65c00;
+		transform: translateY(-3px);
+		box-shadow: 0 5px 15px rgba(230, 92, 0, 0.2);
+	}
+
+	.submit-button:hover::after {
+		width: 300px;
+		height: 300px;
+	}
+
+	.submit-button:active {
+		transform: translateY(-1px);
+	}
+	
+	/* Form validation styling */
+	input:invalid, textarea:invalid {
+		border-color: #ff6b6b;
+	}
+	
+	input:invalid:focus, textarea:invalid:focus {
+		box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+	}
+	
+	.error-message {
+		color: #ff6b6b;
+		font-size: 0.85rem;
+		margin-top: 0.3rem;
+		display: none;
+	}
+	
+	input:invalid + .error-message,
+	textarea:invalid + .error-message {
+		display: block;
+	}
+
+	/* Footer Styles */
+	.site-footer {
+		background-color: #000000;
+		color: rgba(255, 255, 255, 0.7);
+		padding: 3rem 0;
+		border-top: 1px solid var(--border-color);
+	}
+
+	.footer-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	.footer-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+		justify-content: center;
+		margin-bottom: 2rem;
+	}
+
+	.footer-links a {
+		color: rgba(255, 255, 255, 0.7);
+		transition: color 0.3s ease;
+		font-size: 0.9rem;
+	}
+
+	.footer-links a:hover {
+		color: white;
+	}
+
+	.footer-copyright {
+		font-size: 0.9rem;
+	}
+
+	/* FAQ Script */
+	.faq-header {
+		position: relative;
+	}
+
+	/* Enhanced Particle Animation Styles */
+	.particle-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 5;
+		pointer-events: none;
+	}
+	
+	#hero-particles {
+		z-index: 2; /* Above the image but below the overlay */
+		mix-blend-mode: screen;
+		filter: blur(0px); /* No blur for sharper particles */
+	}
+	
+	#hero-particles .particle {
+		filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)); /* Add glow to particles */
+	}
+	
+	.animation-image-wrapper {
+		position: relative;
+	}
+	
+	.animation-image {
+		transform-origin: center center;
+		will-change: transform, opacity; /* Performance optimization */
+		transition: all 0.3s ease;
+	}
+	
+	/* Hero overlay with gradient for better particle visibility */
+	.hero-overlay {
+		background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.7) 100%);
+		z-index: 3; /* Above particles */
+	}
+
+	/* Pulsing particles styles */
+	.pulse-particle {
+		filter: blur(20px); /* Soft blur for glow effect */
+		mix-blend-mode: screen; /* Creates light blend effect */
+		will-change: transform, opacity;
+		pointer-events: none;
+	}
+
+	/* Responsive Styles */
+	@media (max-width: 1200px) {
+		.service-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 991px) {
+		/* Mobile Menu */
+		.menu-toggle {
+			display: block;
+		}
+		
+		.nav-container {
+			position: fixed;
+			top: var(--header-height);
+			left: 0;
+			width: 100%;
+			height: calc(100vh - var(--header-height));
+			background-color: var(--dark-bg);
+			padding: 1.5rem;
+			transform: translateX(-100%);
+			transition: transform 0.3s ease;
+			overflow-y: auto;
+			z-index: 999;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+		}
+		
+		.nav-container.active {
+			transform: translateX(0);
+		}
+		
+		.nav-links {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		
+		.nav-links > li {
+			margin-left: 0;
+			margin-bottom: 1rem;
+			width: 100%;
+		}
+		
+		.nav-links > li > a {
+			font-size: 1.1rem;
+			padding: 0.8rem 0;
+		}
+		
+		.dropdown-menu {
+			position: static;
+			opacity: 1;
+			visibility: visible;
+			transform: none;
+			box-shadow: none;
+			padding: 0 0 0 1rem;
+			display: none;
+		}
+		
+		.has-dropdown.dropdown-active .dropdown-menu {
+			display: block;
+		}
+		
+		.dropdown-menu li a {
+			padding: 0.6rem 0;
+		}
+		
+		.menu-toggle.active .menu-icon-bar:nth-child(1) {
+			transform: translateY(8px) rotate(45deg);
+		}
+		
+		.menu-toggle.active .menu-icon-bar:nth-child(2) {
+			opacity: 0;
+		}
+		
+		.menu-toggle.active .menu-icon-bar:nth-child(3) {
+			transform: translateY(-8px) rotate(-45deg);
+		}
+		
+		.phone-item {
+			margin-top: 1rem;
+		}
+		
+		/* Grid Layouts */
+		.cta-grid {
+			grid-template-columns: 1fr;
+			gap: 30px;
+		}
+		
+		.faq-grid {
+			grid-template-columns: 1fr;
+		}
+		
+		.contact-section .container {
+			grid-template-columns: 1fr;
+			gap: 40px;
+		}
+	}
+
+	@media (max-width: 768px) {
+		/* Hero Section */
+		.hero-section {
+			padding: 7rem 0 3rem;
+		}
+		
+		.hero-section h1 {
+			font-size: 2rem;
+		}
+		
+		.hero-section p {
+			font-size: 1rem;
+		}
+		
+		.hero-stats {
+			flex-direction: column;
+			gap: 2rem;
+		}
+		
+		/* Service Grid */
+		.service-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 576px) {
+		.container {
+			padding: 0 15px;
+		}
+		
+		.logo img {
+			height: 35px;
+		}
+		
+		.hero-section h1 {
+			font-size: 1.8rem;
+		}
+		
+		.stat-number {
+			font-size: 3rem;
+		}
+		
+		.stat-suffix {
+			font-size: 2rem;
+		}
+		
+		.service-item {
+			padding: 1.5rem;
+		}
+		
+		.manifesto-cta, 
+		.assessment-cta, 
+		.industry-fast-facts {
+			padding: 1.5rem;
+		}
+		
+		.contact-form-container {
+			padding: 1.5rem;
+		}
+	}
+
+	@media (hover: none) {
+		.has-dropdown .dropdown-menu {
+			transition: none;
+		}
+	}
+
+	/* Animation Section Styles */
+	.animation-section {
+		padding: 5rem 0;
+		background-color: var(--dark-bg);
+		position: relative;
+		overflow: hidden;
+	}
+	
+	.animation-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+	}
+	
+	.animation-content {
+		flex-basis: 50%;
+		padding-right: 2rem;
+	}
+	
+	.animation-visual {
+		flex-basis: 50%;
+		position: relative;
+		min-height: 400px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.animation-content h2 {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
+		color: var(--light-text);
+	}
+	
+	.animation-content p {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+		color: #aaaaaa;
+	}
+	
+	.animation-features {
+		margin: 2rem 0;
+	}
+	
+	.feature-item {
+		display: flex;
+		align-items: flex-start;
+		margin-bottom: 1.5rem;
+	}
+	
+	.feature-icon {
+		width: 40px;
+		height: 40px;
+		background-color: rgba(255, 102, 0, 0.15);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-right: 1rem;
+		flex-shrink: 0;
+	}
+	
+	.feature-icon svg {
+		width: 20px;
+		height: 20px;
+		color: var(--secondary-color);
+	}
+	
+	.feature-text h4 {
+		font-size: 1.2rem;
+		margin-bottom: 0.5rem;
+		color: var(--light-text);
+	}
+	
+	.feature-text p {
+		font-size: 1rem;
+		margin-bottom: 0;
+		color: #aaaaaa;
+	}
+	
+	.visual-elements {
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+		opacity: 0.1;
+		border-radius: 20px;
+		position: relative;
+		min-height: 300px;
+	}
+	
+	.particle-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 5;
+		pointer-events: none;
+	}
+	
+	@media (max-width: 991px) {
+		.animation-content, 
+		.animation-visual {
+			flex-basis: 100%;
+		}
+		
+		.animation-content {
+			padding-right: 0;
+			margin-bottom: 2rem;
+		}
+	}
+	
+	/* 2025 AI Visualization Styles */
+	.ai-visualization {
+		max-width: 90%;
+		border-radius: 10px;
+		box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+		position: relative;
+		z-index: 10;
+		opacity: 0.95;
+		transition: all 0.3s ease;
+	}
+	
+	.ai-visualization:hover {
+		transform: scale(1.02);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+		opacity: 1;
+	}
+	
+	.ai-visualization-secondary, .ai-visualization-tertiary {
+		max-width: 70%;
+		border-radius: 8px;
+		position: absolute;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+		transition: all 0.3s ease;
+		opacity: 0.7;
+	}
+	
+	.ai-visualization-secondary {
+		top: 15%;
+		right: -15%;
+		z-index: 8;
+		transform: rotate(8deg);
+	}
+	
+	.ai-visualization-tertiary {
+		bottom: 15%;
+		left: -15%;
+		z-index: 7;
+		transform: rotate(-5deg);
+	}
+	
+	.ai-visualization-secondary:hover, .ai-visualization-tertiary:hover {
+		transform: scale(1.05) rotate(0);
+		z-index: 12;
+		opacity: 0.95;
+	}
+</style>
+
+<script src="../components/site-scripts.js"></script>
+</script>
+
+</Layout>
